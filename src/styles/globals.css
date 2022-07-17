@@ -9,3 +9,40 @@
   text-transform: inherit;
   letter-spacing: inherit;
 }
+
+:root {
+  --font-family-base: 'Inter', sans-serif;
+  --font-family-brand: 'Rock Salt', cursive;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --color-dark-gray: rgb(64, 64, 64);
+  --color-transparent-dark-gray: rgba(64, 64, 64, 0.75);
+  --color-white: rgb(255, 255, 255);
+  --color-transparent-white: rgba(255, 255, 255, 0.7);
+  --color-red: rgb(255, 0, 0);
+  --color-dark-red: rgb(230, 11, 11);
+  --color-orange: rgb(255, 122, 0);
+  --color-yellow: rgb(255, 230, 0);
+  --color-transparent-yellow: rgba(255, 230, 0, 0.5);
+  --color-light-yellow: rgb(255, 247, 173);
+  --color-green: rgb(20, 255, 0);
+  --color-red-gradient: linear-gradient(
+    90deg,
+    rgb(172, 36, 36) 0.52%,
+    rgb(255, 0, 0) 53.61%,
+    rgb(172, 36, 36) 100%
+  );
+  --color-yellow-orange-gradient: linear-gradient(
+    180deg,
+    rgba(255, 230, 0, 0.7) 0%,
+    rgba(255, 122, 0, 0.14) 100%
+  );
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-dark-gray);
+  background-color: var(--color-light-yellow);
+}
