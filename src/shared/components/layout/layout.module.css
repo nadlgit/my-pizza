@@ -1,0 +1,34 @@
+@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+
+.container {
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 4.6875rem;
+  font-family: var(--font-family-brand);
+  font-size: 2rem;
+  color: var(--color-yellow);
+  background-image: var(--color-red-gradient);
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  height: 3.75rem;
+  width: 3.75rem;
+}
+
+@media bp-tablet {
+  .header {
+    min-height: 6.25rem;
+    font-size: 2.25rem;
+  }
+
+  .logo {
+    height: 5rem;
+    width: 5rem;
+  }
+}
