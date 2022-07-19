@@ -1,6 +1,6 @@
 import styles from './layout.module.css';
 import Logo from './logo.png';
-import Image from 'next/future/image';
+import { Image } from 'shared/components/ui/image';
 import Link from 'next/link';
 
 type LayoutProps = { children: React.ReactNode };
