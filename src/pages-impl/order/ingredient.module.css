@@ -1,0 +1,25 @@
+@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+
+.container {
+  --img-height: 3.125rem;
+}
+
+.selected {
+}
+
+.image {
+  width: var(--img-height);
+  height: var(--img-height);
+}
+
+@media bp-tablet {
+  .container {
+    --img-height: 4.0625rem;
+  }
+}
+
+@media bp-desktop {
+  .container {
+    --img-height: 4.6875rem;
+  }
+}
