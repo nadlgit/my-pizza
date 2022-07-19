@@ -1,16 +1,14 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
+import { AppPage } from 'shared/components/app-page';
 import { Home } from 'pages-impl/home';
 
-export const HomePage: NextPage = () => {
+const HomePage: NextPage = () => {
+  const title = 'My Pizza';
+  const description = "Simulation d'un site de commande de pizza";
   return (
-    <>
-      <Head>
-        <title>My Pizza</title>
-        <meta name="description" content="Simulation d'un site de commande de pizza" />
-      </Head>
+    <AppPage title={title} description={description}>
       <Home />
-    </>
+    </AppPage>
   );
 };
 

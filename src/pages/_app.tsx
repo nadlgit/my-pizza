@@ -1,18 +1,12 @@
 import 'shared/styles/globals.css';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { Layout } from 'shared/components/layout';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
-      <Head>
-        <link rel="icon" href="/favicon.png" />
-      </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 };
 
