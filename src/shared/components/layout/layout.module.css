@@ -1,6 +1,9 @@
 @value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
 
 .container {
+  --header-height: 4.6875rem;
+  --logo-height: 3.75rem;
+  --brand-font-size: 2rem;
   min-height: 100vh;
 }
 
@@ -8,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 4.6875rem;
+  min-height: var(--header-height);
   color: var(--color-yellow);
   background-image: var(--color-red-gradient);
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
@@ -23,22 +26,18 @@
 
 .header h1 {
   font-family: var(--font-family-brand);
-  font-size: 2rem;
+  font-size: var(--brand-font-size);
 }
 
 .logo {
-  height: 3.75rem;
-  width: 3.75rem;
+  height: var(--logo-height);
+  width: var(--logo-height);
 }
 
 @media bp-tablet {
-  .header {
-    min-height: 6.25rem;
-    font-size: 2.25rem;
-  }
-
-  .logo {
-    height: 5rem;
-    width: 5rem;
+  .container {
+    --header-height: 6.25rem;
+    --logo-height: 5rem;
+    --brand-font-size: 2.25rem;
   }
 }
