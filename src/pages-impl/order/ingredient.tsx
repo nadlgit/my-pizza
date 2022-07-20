@@ -14,8 +14,8 @@ export const Ingredient = ({ type, title, imgUrl, price, isSelected = false }: I
   return (
     <label className={`${styles.container} ${isSelected ? styles.selected : ''} `}>
       <Image className={styles.image} src={imgUrl} alt={title} />
-      <span>{title}</span>
-      <span>{formattedPrice}</span>
+      <span className={styles.title}>{title}</span>
+      <span className={styles.price}>{formattedPrice}</span>
       {type === 'base' ? (
         <input type="radio" name="base" />
       ) : (

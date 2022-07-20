@@ -2,7 +2,11 @@
 
 .container {
   --img-height: 3.125rem;
-  display: flex;
+  display: inline-grid;
+  grid-template-areas:
+    'image title'
+    'image price';
+  width: fit-content;
 }
 
 .container input {
@@ -13,8 +17,17 @@
 }
 
 .image {
+  grid-area: image;
   width: var(--img-height);
   height: var(--img-height);
+}
+
+.title {
+  grid-area: title;
+}
+
+.price {
+  grid-area: price;
 }
 
 @media bp-tablet {
