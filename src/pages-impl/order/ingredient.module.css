@@ -2,6 +2,11 @@
 
 .container {
   --img-height: 3.125rem;
+  display: flex;
+}
+
+.container input {
+  display: none;
 }
 
 .selected {

@@ -8,6 +8,7 @@ export const BaseChoice = () => {
       {bases.map((item, index) => (
         <Ingredient
           key={index}
+          type="base"
           title={item.title}
           imgUrl={item.imgUrl}
           price={item.price}
