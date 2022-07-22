@@ -1,43 +1,75 @@
 @value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
 
-.container {
+.input {
+  display: none;
+}
+
+.label {
   --img-height: 3.125rem;
+  --border-radius: 0.625rem;
+  --check-height: 1.25rem;
+  --title-font-size: 1rem;
+  --price-font-size: 0.875rem;
+  position: relative;
   display: inline-grid;
   grid-template-areas:
     'image title'
     'image price';
+  justify-items: center;
   width: fit-content;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
-.container input {
-  display: none;
+.input:checked + .label {
+  background-color: var(--color-green);
 }
-
-.selected {
+.input:checked + .label::after {
+  position: absolute;
+  top: calc(-0.48 * var(--check-height));
+  right: calc(-0.4 * var(--check-height));
+  content: ' ';
+  height: var(--check-height);
+  width: var(--check-height);
+  background-image: url('./check.png');
+  background-size: var(--check-height);
 }
 
 .image {
   grid-area: image;
+  align-self: center;
   width: var(--img-height);
   height: var(--img-height);
 }
 
 .title {
   grid-area: title;
+  align-self: end;
+  font-size: var(--title-font-size);
+  font-weight: var(--font-weight-semibold);
 }
 
 .price {
   grid-area: price;
+  align-self: start;
+  font-size: var(--price-font-size);
 }
 
 @media bp-tablet {
-  .container {
+  .label {
     --img-height: 4.0625rem;
+    --check-height: 1.5625rem;
+    --title-font-size: 1.25rem;
+    --price-font-size: 1rem;
   }
 }
 
 @media bp-desktop {
-  .container {
+  .label {
     --img-height: 4.6875rem;
+    --check-height: 1.875rem;
   }
 }

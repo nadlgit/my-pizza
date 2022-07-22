@@ -5,14 +5,14 @@ export const BaseChoice = () => {
   return (
     <div>
       <h2>Choisissez votre base</h2>
-      {bases.map((item, index) => (
+      {bases.map((item) => (
         <Ingredient
-          key={index}
+          key={item.id}
           type="base"
+          id={item.id}
           title={item.title}
           imgUrl={item.imgUrl}
           price={item.price}
-          isSelected={true}
         />
       ))}
     </div>
