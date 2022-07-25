@@ -28,6 +28,9 @@
 .input:focus + .label {
   outline: var(--color-bright-blue) solid 2px;
 }
+.input:focus:not(:focus-visible) + .label {
+  outline: none;
+}
 
 .input:checked + .label {
   background-color: var(--color-green);
