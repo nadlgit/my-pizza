@@ -27,6 +27,7 @@
   --color-transparent-yellow: rgba(255, 230, 0, 0.5);
   --color-light-yellow: rgb(255, 247, 173);
   --color-green: rgb(20, 255, 0);
+  --color-bright-blue: rgb(0, 150, 255);
   --color-red-gradient: linear-gradient(
     90deg,
     rgb(172, 36, 36) 0.52%,
@@ -45,4 +46,10 @@ body {
   font-weight: var(--font-weight-regular);
   color: var(--color-dark-gray);
   background-color: var(--color-light-yellow);
+}
+
+a:focus,
+input:focus,
+button:focus {
+  outline: var(--color-bright-blue) solid 2px;
 }

@@ -1,7 +1,8 @@
 @value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
 
 .input {
-  display: none;
+  position: absolute;
+  opacity: 0;
 }
 
 .label {
@@ -22,6 +23,10 @@
   border-radius: var(--border-radius);
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   cursor: pointer;
+}
+
+.input:focus + .label {
+  outline: var(--color-bright-blue) solid 2px;
 }
 
 .input:checked + .label {

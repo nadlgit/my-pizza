@@ -15,7 +15,7 @@ export const Ingredient = ({ type, id, title, imgUrl, price }: IngredientProps) 
   const inputName = type === 'base' ? 'base' : 'ingredient';
   return (
     <>
-      <input id={id} type={inputType} name={inputName} className={styles.input} />
+      <input id={id} type={inputType} name={inputName} className={styles.input} value={id} />
       <label htmlFor={id} className={styles.label}>
         <Image className={styles.image} src={imgUrl} alt={title} />
         <span className={styles.title}>{title}</span>
