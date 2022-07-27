@@ -1,21 +1,37 @@
 import styles from './ingredient.module.css';
 import { Image } from 'shared/components/ui/image';
 
-type IngredientProps = {
-  type: 'base' | 'ingredient';
-  id: string;
-  title: string;
-  imgUrl: string;
-  price: number;
-};
+import type { ingredient } from 'data/model';
 
-export const Ingredient = ({ type, id, title, imgUrl, price }: IngredientProps) => {
+type IngredientProps = {
+  inputType: 'radio' | 'checkbox';
+  inputName: string;
+  isInitiallySelected: boolean;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+} & Pick<ingredient, 'id' | 'title' | 'imgUrl' | 'price'>;
+
+export const Ingredient = ({
+  inputType,
+  inputName,
+  id,
+  title,
+  imgUrl,
+  price,
+  isInitiallySelected,
+  onChange,
+}: IngredientProps) => {
   const formattedPrice = `${price.toFixed(2).replace('.', ',')}€`;
-  const inputType = type === 'base' ? 'radio' : 'checkbox';
-  const inputName = type === 'base' ? 'base' : 'ingredient';
   return (
     <>
-      <input id={id} type={inputType} name={inputName} className={styles.input} value={id} />
+      <input
+        id={id}
+        type={inputType}
+        name={inputName}
+        className={styles.input}
+        value={id}
+        defaultChecked={isInitiallySelected}
+        onChange={onChange}
+      />
       <label htmlFor={id} className={styles.label}>
         <Image className={styles.image} src={imgUrl} alt={title} />
         <span className={styles.title}>{title}</span>
