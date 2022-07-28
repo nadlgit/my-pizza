@@ -1,0 +1,47 @@
+@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+
+.container {
+  --price-font-size: 1.25rem;
+  background-color: var(--color-yellow);
+}
+
+.preview {
+  display: none;
+}
+
+.price {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--price-font-size);
+}
+
+@media bp-tablet {
+  .container {
+    --price-font-size: 1.5rem;
+  }
+}
+
+@media bp-desktop {
+  .container {
+    --preview-height: 22.5rem;
+    --price-font-size: 2.5rem;
+    background-image: var(--color-yellow-orange-gradient);
+  }
+
+  .preview {
+    position: relative;
+    display: block;
+    width: var(--preview-height);
+    height: var(--preview-height);
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
