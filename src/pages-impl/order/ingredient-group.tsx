@@ -15,6 +15,8 @@ type IngredientGroupProps = {
   onChange: (current: ingredientSelection) => void;
 };
 
+export type handleIngredientGroupChange = IngredientGroupProps['onChange'];
+
 export const IngredientGroup = ({
   type,
   name,
