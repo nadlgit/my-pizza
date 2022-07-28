@@ -10,7 +10,7 @@ type IngredientGroupProps = {
   type: 'radio' | 'checkbox';
   name: string;
   title: string;
-  list: Pick<ingredient, 'id' | 'title' | 'imgUrl' | 'price'>[];
+  list: Readonly<Pick<ingredient, 'id' | 'title' | 'imgUrl' | 'price'>[]>;
   defaultSelection: ingredientSelection;
   onChange: (current: ingredientSelection) => void;
 };

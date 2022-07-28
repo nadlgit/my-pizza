@@ -11,7 +11,7 @@ import egg from './egg.json';
 import salmon from './salmon.json';
 import queenconch from './queen-conch.json';
 
-export const ingredients = [
+const rawIngredients = [
   ham,
   cheese,
   chorizo,
@@ -25,3 +25,5 @@ export const ingredients = [
   salmon,
   queenconch,
 ];
+
+export const ingredients = Object.freeze(rawIngredients.map((item) => Object.freeze(item)));
