@@ -3,7 +3,9 @@ import Logo from './logo.png';
 import { Image } from 'shared/components/ui/image';
 import Link from 'next/link';
 
-type LayoutProps = { children: React.ReactNode };
+import type { ReactNode } from 'react';
+
+type LayoutProps = { children: ReactNode };
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
