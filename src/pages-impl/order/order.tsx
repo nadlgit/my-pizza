@@ -21,7 +21,7 @@ export const Order = () => {
   };
 
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <Preview amount={order.amount} base={order.base} ingredients={order.ingredients} />
       <IngredientGroup
         type="radio"
