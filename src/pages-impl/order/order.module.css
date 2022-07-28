@@ -1,0 +1,13 @@
+@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+
+@media bp-desktop {
+  .container {
+    display: grid;
+    grid-template-columns: 24rem auto;
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .container > :first-child {
+    grid-row: span 3;
+  }
+}

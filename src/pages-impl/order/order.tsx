@@ -1,3 +1,4 @@
+import styles from './order.module.css';
 import { Preview } from './preview';
 import { IngredientGroup } from './ingredient-group';
 import { Actions } from './actions';
@@ -21,7 +22,7 @@ export const Order = () => {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} className={styles.container}>
       <Preview amount={order.amount} base={order.base} ingredients={order.ingredients} />
       <IngredientGroup
         type="radio"
