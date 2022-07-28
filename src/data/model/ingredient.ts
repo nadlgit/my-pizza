@@ -4,4 +4,5 @@ export type ingredient = {
   price: number;
   imgUrl: string;
   previewUrl: string;
+  previewOnTop?: boolean;
 };

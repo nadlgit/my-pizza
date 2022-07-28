@@ -3,5 +3,6 @@
   "title": "Oeuf",
   "price": 2,
   "imgUrl": "/images/ingredients/egg.png",
-  "previewUrl": ""
+  "previewUrl": "/images/ingredients/preview-egg.png",
+  "previewOnTop": true
 }
