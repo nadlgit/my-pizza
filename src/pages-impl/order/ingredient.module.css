@@ -26,7 +26,7 @@
 }
 
 .input:focus + .label {
-  outline: var(--color-bright-blue) solid 2px;
+  outline-style: auto;
 }
 .input:focus:not(:focus-visible) + .label {
   outline: none;
