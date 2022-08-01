@@ -43,8 +43,8 @@ export const IngredientGroup = ({
   };
 
   return (
-    <div>
-      <h2>{title}</h2>
+    <section className={styles.group}>
+      <h2 className={styles.title}>{title}</h2>
       {list.map((item) => (
         <Ingredient
           key={item.id}
@@ -58,6 +58,6 @@ export const IngredientGroup = ({
           onChange={handleChange}
         />
       ))}
-    </div>
+    </section>
   );
 };

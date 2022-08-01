@@ -16,8 +16,8 @@
   grid-template-areas:
     'image title'
     'image price';
+  grid-template-columns: var(--img-height) auto;
   justify-items: center;
-  width: fit-content;
   background-color: var(--color-white);
   border: 1px solid var(--color-dark-gray);
   border-radius: var(--border-radius);
@@ -51,6 +51,10 @@
   align-self: center;
   width: var(--img-height);
   height: var(--img-height);
+}
+.image img {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
 }
 
 .title {

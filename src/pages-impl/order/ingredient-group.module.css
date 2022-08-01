@@ -1,0 +1,35 @@
+@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+
+.group {
+  --title-font-size: 1.25rem;
+  --ingredient-width: 13.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+.group > * {
+  flex-basis: var(--ingredient-width);
+}
+
+.title {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: var(--title-font-size);
+  font-weight: var(--font-weight-bold);
+}
+
+@media bp-tablet {
+  .group {
+    --title-font-size: 1.5rem;
+    --ingredient-width: 13.75rem;
+  }
+}
+
+@media bp-desktop {
+  .group {
+    --title-font-size: 1.75rem;
+    --ingredient-width: 14rem;
+  }
+}
