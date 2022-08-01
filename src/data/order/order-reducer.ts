@@ -3,32 +3,43 @@ import { updateOrderAmount, newOrderId } from './helpers';
 
 import type { order } from 'data/model';
 
-type orderReducerAction = {
-  type: 'SET_BASE' | 'SET_INGREDIENTS' | 'SET_DELIVERY' | 'SET_CONTACT' | 'COMPLETE' | 'CANCEL';
-  payload?: Partial<order>;
-};
+type orderReducerAction =
+  | {
+      type: 'SET_BASE';
+      payload: Pick<order, 'base'>;
+    }
+  | {
+      type: 'SET_INGREDIENTS';
+      payload: Pick<order, 'ingredients'>;
+    }
+  | {
+      type: 'SET_DELIVERY';
+      payload: Pick<order, 'deliveryMode'>;
+    }
+  | {
+      type: 'SET_CONTACT';
+      payload: Pick<order, 'contact'>;
+    }
+  | {
+      type: 'COMPLETE';
+    }
+  | {
+      type: 'CANCEL';
+    };
 
 export const orderReducer = (state: order, action: orderReducerAction) => {
   switch (action.type) {
     case 'SET_BASE':
-      return action.payload?.base
-        ? updateOrderAmount({ ...state, base: action.payload.base })
-        : state;
+      return updateOrderAmount({ ...state, base: action.payload.base });
     case 'SET_INGREDIENTS':
-      return action.payload?.ingredients
-        ? updateOrderAmount({ ...state, ingredients: action.payload.ingredients })
-        : state;
+      return updateOrderAmount({ ...state, ingredients: action.payload.ingredients });
     case 'SET_DELIVERY':
-      return action.payload?.deliveryMode
-        ? updateOrderAmount({ ...state, deliveryMode: action.payload.deliveryMode })
-        : state;
+      return updateOrderAmount({ ...state, deliveryMode: action.payload.deliveryMode });
     case 'SET_CONTACT':
-      return action.payload?.contact ? { ...state, contact: action.payload.contact } : state;
+      return { ...state, contact: action.payload.contact };
     case 'COMPLETE':
       return { ...state, id: newOrderId() };
     case 'CANCEL':
       return defaultOrder;
-    default:
-      throw new Error(`orderReducer unknown action type: ${action.type}`);
   }
 };
