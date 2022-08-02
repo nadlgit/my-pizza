@@ -8,6 +8,7 @@ import { useOrder } from 'data/order';
 
 import type { handleIngredientGroupChange } from './ingredient-group';
 import type { ingredient } from 'data/model';
+import type { FormEventHandler } from 'react';
 
 export const Order = () => {
   const { order, setBase, setIngredients, cancelOrder } = useOrder();
@@ -20,9 +21,17 @@ export const Order = () => {
     const selection = current.map((id) => ingredients.find((item) => item.id === id) as ingredient);
     setIngredients(selection);
   };
+  const handleCancel = () => {
+    cancelOrder();
+    //navigate to home
+  };
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    //navigate to next
+  };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className={styles.container}>
+    <form onSubmit={handleSubmit} className={styles.container}>
       <Preview amount={order.amount} base={order.base} ingredients={order.ingredients} />
       <IngredientGroup
         type="radio"
@@ -40,7 +49,7 @@ export const Order = () => {
         defaultSelection={order.ingredients.map((item) => item.id)}
         onChange={handleIngrSelection}
       />
-      <Actions />
+      <Actions onCancel={handleCancel} />
     </form>
   );
 };
