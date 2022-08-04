@@ -3,37 +3,43 @@ import Link from 'next/link';
 
 import type { DetailedHTMLProps, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 
-const buttonActions = {
+const baseStyle = styles.base;
+
+const semanticStyles = {
   button: { className: styles.button },
   submit: { className: styles.button },
   link: { className: styles.link },
 };
 
-const buttonVariants = {
+const lookStyles = {
   green: { className: styles.green },
   red: { className: styles.red },
   orange: { className: styles.orange },
   yellow: { className: styles.yellow },
 };
 
-type ButtonProps =
+const disabledStyle = styles.disabled;
+
+type ButtonProps = {
+  look?: keyof typeof lookStyles;
+} & (
   | ({
-      action?: keyof Pick<typeof buttonActions, 'button' | 'submit'>;
-      variant?: keyof typeof buttonVariants;
+      semantic?: keyof Pick<typeof semanticStyles, 'button' | 'submit'>;
     } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>)
   | ({
-      action: keyof Pick<typeof buttonActions, 'link'>;
-      variant?: keyof typeof buttonVariants;
+      semantic: keyof Pick<typeof semanticStyles, 'link'>;
       url: string;
-    } & DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>);
+    } & DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>)
+);
 
 export const Button = (props: ButtonProps) => {
   const className =
-    buttonActions[props?.action ?? 'button'].className +
-    (props?.variant ? ' ' + buttonVariants[props.variant].className : '') +
-    (props?.className ? ' ' + props.className : '');
+    baseStyle +
+    ' ' +
+    semanticStyles[props?.semantic ?? 'button'].className +
+    (props?.look ? ' ' + lookStyles[props.look].className : '');
 
-  if (props?.action === 'link') {
+  if (props?.semantic === 'link') {
     return (
       <Link href={props?.url}>
         <a {...props} className={className}>
@@ -46,8 +52,12 @@ export const Button = (props: ButtonProps) => {
   return (
     <button
       {...props}
-      className={className}
-      type={props?.action === 'submit' ? 'submit' : 'button'}
+      type={props?.semantic === 'submit' ? 'submit' : 'button'}
+      className={
+        props?.look && props?.disabled
+          ? className.replace(lookStyles[props.look].className, disabledStyle)
+          : className
+      }
     >
       {props.children}
     </button>

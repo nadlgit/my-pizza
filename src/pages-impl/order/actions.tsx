@@ -1,4 +1,5 @@
-import { Button } from 'shared/components/ui/button';
+import styles from './actions.module.css';
+import { CancelButton, SubmitButton } from 'shared/components/ui/button';
 
 type ActionsProps = {
   onCancel: () => void;
@@ -6,13 +7,9 @@ type ActionsProps = {
 
 export const Actions = ({ onCancel }: ActionsProps) => {
   return (
-    <section>
-      <Button variant="red" onClick={() => onCancel()}>
-        Annuler
-      </Button>
-      <Button action="submit" variant="green">
-        Continuer
-      </Button>
+    <section className={styles.actions}>
+      <CancelButton onCancel={onCancel}>Annuler</CancelButton>
+      <SubmitButton>Continuer</SubmitButton>
     </section>
   );
 };
