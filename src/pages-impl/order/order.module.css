@@ -1,4 +1,4 @@
-@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+@value bp-desktop from 'shared/styles/breakpoints.module.css';
 
 @media bp-desktop {
   .container {
