@@ -5,12 +5,14 @@ import { Actions } from './actions';
 import { bases } from 'data/bases';
 import { ingredients } from 'data/ingredients';
 import { useOrder } from 'data/order';
+import { useRouter } from 'next/router';
 
 import type { handleIngredientGroupChange } from './ingredient-group';
 import type { ingredient } from 'data/model';
 import type { FormEventHandler } from 'react';
 
 export const Order = () => {
+  const router = useRouter();
   const { order, setBase, setIngredients, cancelOrder } = useOrder();
   const handleBaseSelection: handleIngredientGroupChange = (current) => {
     if (current.length === 1) {
@@ -23,11 +25,11 @@ export const Order = () => {
   };
   const handleCancel = () => {
     cancelOrder();
-    //navigate to home
+    router.push('/');
   };
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    //navigate to next
+    router.push('/order-validation');
   };
 
   return (

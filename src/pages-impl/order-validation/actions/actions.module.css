@@ -1,0 +1,25 @@
+@value bp-tablet from 'shared/styles/breakpoints.module.css';
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.backimg {
+  width: 1em;
+  height: 1em;
+}
+
+.backtxt {
+  display: none;
+}
+
+@media bp-tablet {
+  .backimg {
+    display: none;
+  }
+
+  .backtxt {
+    display: inline;
+  }
+}
