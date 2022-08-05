@@ -1,0 +1,34 @@
+@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
+
+.cta {
+  --cta-font-size: 1.25rem;
+  display: grid;
+  place-items: center;
+  gap: 0.6em;
+  padding: 1em;
+  margin-block: 5vh;
+  margin-inline: auto;
+  color: var(--color-dark-red);
+  background-color: var(--color-transparent-yellow);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--cta-font-size);
+  text-align: center;
+}
+
+.cta p {
+  max-width: 35ch;
+}
+
+@media bp-tablet {
+  .cta {
+    --cta-font-size: 1.5rem;
+    border-radius: 0.625rem;
+    max-width: max(44ch, 80vw);
+  }
+}
+
+@media bp-desktop {
+  .cta {
+    --cta-font-size: 2rem;
+  }
+}
