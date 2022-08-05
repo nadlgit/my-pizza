@@ -1,12 +1,13 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
+@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
 
 .cta {
   --cta-font-size: 1.25rem;
+  --cta-margin-block: 10vh;
   display: grid;
   place-items: center;
   gap: 0.6em;
   padding: 1em;
-  margin-block: 5vh;
+  margin-block: var(--cta-margin-block);
   margin-inline: auto;
   color: var(--color-dark-red);
   background-color: var(--color-transparent-yellow);
@@ -30,5 +31,11 @@
 @media bp-desktop {
   .cta {
     --cta-font-size: 2rem;
+  }
+}
+
+@media bp-landscape {
+  .cta {
+    --cta-margin-block: 5vh;
   }
 }
