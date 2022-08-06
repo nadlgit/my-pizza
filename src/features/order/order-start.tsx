@@ -37,7 +37,11 @@ export const OrderStart = ({
 
   return (
     <form onSubmit={handleFormSubmit} className={className}>
-      <Preview amount={order.amount} base={order.base} ingredients={order.ingredients} />
+      <Preview
+        amount={order.amount - order.amountExtraPart}
+        base={order.base}
+        ingredients={order.ingredients}
+      />
       <IngredientGroup
         type="radio"
         name="base"

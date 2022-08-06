@@ -11,6 +11,7 @@ export const defaultOrder: order = Object.freeze(
     base: bases[0],
     ingredients: [],
     amount: 0,
+    amountExtraPart: 0,
     deliveryMode: 'pick-up',
   })
 );

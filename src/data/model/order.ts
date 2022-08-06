@@ -5,6 +5,7 @@ export type order = {
   base: ingredient;
   ingredients: ingredient[];
   amount: number;
+  amountExtraPart: number;
   deliveryMode: 'pick-up' | 'delivery';
   contact?: {
     name: string;
