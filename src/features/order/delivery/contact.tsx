@@ -40,6 +40,7 @@ const CustomerContact = ({
       <p>Vos coordonnées</p>
       {contact ? (
         <>
+          <p>{contact?.name}</p>
           <p>{contact?.address?.line1}</p>
           {contact?.address?.line2 && <p>{contact?.address?.line2}</p>}
           <p>{contact?.address?.city}</p>
