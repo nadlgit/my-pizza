@@ -1,13 +1,22 @@
 @value bp-desktop from 'shared/styles/breakpoints.module.css';
 
+.container {
+}
+
+.start {
+}
+
+.validation {
+}
+
 @media bp-desktop {
-  .container {
+  .start {
     display: grid;
     grid-template-columns: 24rem auto;
     grid-template-rows: repeat(3, auto);
   }
 
-  .container > :first-child {
+  .start > :first-child {
     grid-row: span 3;
   }
 }

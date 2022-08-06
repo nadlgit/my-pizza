@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { AppPage } from 'shared/components/app-page';
-import { Home } from 'pages-impl/home';
+import { Home } from 'features/home';
 
 const HomePage: NextPage = () => {
   const title = 'My Pizza';
