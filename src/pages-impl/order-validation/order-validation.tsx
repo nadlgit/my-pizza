@@ -40,6 +40,7 @@ export const OrderValidation = () => {
     <form onSubmit={handleSubmit} className={styles.container}>
       <Delivery
         defaultSelection={order.deliveryMode}
+        contact={order?.contact}
         onChange={handleDeliveryModeChange}
         openContactForm={() => {}}
       />
