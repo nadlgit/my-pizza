@@ -3,16 +3,34 @@ import { OrderStart } from './order-start';
 import { OrderValidation } from './order-validation';
 import { useOrder } from 'data/order';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 import type { FormEventHandler } from 'react';
 
-type OrderProps = {
-  step: 'start' | 'validation';
+type orderStep = 'start' | 'validation';
+const orderStepList = ['start', 'validation'] as orderStep[];
+const firstStep = orderStepList[0];
+const prevStep = (step: orderStep) => {
+  const stepIndex = orderStepList.findIndex((item) => item === step);
+  if (stepIndex > 0 && stepIndex <= orderStepList.length) {
+    return orderStepList[stepIndex - 1];
+  } else {
+    return step;
+  }
+};
+const nextStep = (step: orderStep) => {
+  const stepIndex = orderStepList.findIndex((item) => item === step);
+  if (stepIndex >= 0 && stepIndex < orderStepList.length) {
+    return orderStepList[stepIndex + 1];
+  } else {
+    return step;
+  }
 };
 
 const tmpOpenCOntactForm = () => {};
 
-export const Order = ({ step }: OrderProps) => {
+export const Order = () => {
+  const [step, setStep] = useState<orderStep>(firstStep);
   const router = useRouter();
   const {
     order,
@@ -24,27 +42,27 @@ export const Order = ({ step }: OrderProps) => {
     cancelOrder,
   } = useOrder();
 
+  useEffect(() => {
+    setStep(firstStep);
+    return () => cancelOrder();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleCancel = () => {
     cancelOrder();
     router.push('/');
   };
 
   const handleBack = () => {
-    router.back();
+    setStep(prevStep(step));
   };
 
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    switch (step) {
-      case 'start':
-        router.push('/order-validation');
-        break;
-      case 'validation':
-        //validate user input: canCompleteOrder()
-        completeOrder();
-        //navigate to recap
-        break;
+    if (step === 'validation') {
+      completeOrder();
     }
+    setStep(nextStep(step));
   };
 
   return (

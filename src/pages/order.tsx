@@ -7,7 +7,7 @@ const OrderPage: NextPage = () => {
   const description = "Simulation d'un site de commande de pizza";
   return (
     <AppPage title={title} description={description}>
-      <Order step="start" />
+      <Order />
     </AppPage>
   );
 };
