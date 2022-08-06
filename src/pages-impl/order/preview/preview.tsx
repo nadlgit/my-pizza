@@ -1,13 +1,13 @@
 import styles from './preview.module.css';
 import { Image } from 'shared/components/ui/image';
 import PreviewPizza from './preview-pizza.png';
+import { formatPrice } from 'shared/utils/helpers';
 
 import type { order } from 'data/model';
 
 type PreviewProps = Pick<order, 'amount' | 'base' | 'ingredients'>;
 
 export const Preview = ({ amount, base, ingredients }: PreviewProps) => {
-  const formattedAmount = `${amount.toFixed(2).replace('.', ',')}€`;
   const previewItems = [
     base,
     ...ingredients.filter((item) => !item?.previewOnTop),
@@ -26,7 +26,7 @@ export const Preview = ({ amount, base, ingredients }: PreviewProps) => {
           />
         ))}
       </div>
-      <div className={styles.price}>{`Prix: ${formattedAmount}`}</div>
+      <div className={styles.price}>{`Prix: ${formatPrice(amount)}`}</div>
     </div>
   );
 };

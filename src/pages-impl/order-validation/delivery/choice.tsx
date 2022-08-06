@@ -1,5 +1,6 @@
 import styles from './choice.module.css';
 import { deliveryExtraCharge } from 'data/order';
+import { formatPrice } from 'shared/utils/helpers';
 
 import type { order } from 'data/model';
 import type { ChangeEventHandler, ReactNode } from 'react';
@@ -19,19 +20,17 @@ export const Choice = ({ defaultSelection, onChange }: ChoiceProps) => {
     onChange(newSelection);
   };
 
-  const formattedExtraCharge = `${
-    Number.isInteger(deliveryExtraCharge)
-      ? deliveryExtraCharge
-      : deliveryExtraCharge.toFixed(2).replace('.', ',')
-  }€`;
-
   return (
     <div className={styles.choice}>
       <ChoiceItem value="pick-up" defaultSelection={defaultSelection} onChange={handleChange}>
         Retrait sur place
       </ChoiceItem>
       <ChoiceItem value="delivery" defaultSelection={defaultSelection} onChange={handleChange}>
-        {`Livraison (+ ${formattedExtraCharge})`}
+        {`Livraison (+ ${
+          Number.isInteger(deliveryExtraCharge)
+            ? `${deliveryExtraCharge}€`
+            : formatPrice(deliveryExtraCharge)
+        })`}
       </ChoiceItem>
     </div>
   );
