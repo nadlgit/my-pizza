@@ -1,14 +1,15 @@
 import styles from './order.module.css';
 import { OrderStart } from './order-start';
 import { OrderValidation } from './order-validation';
+import { OrderEnd } from './order-end';
 import { useOrder } from 'data/order';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import type { FormEventHandler } from 'react';
 
-type orderStep = 'start' | 'validation';
-const orderStepList = ['start', 'validation'] as orderStep[];
+type orderStep = 'start' | 'validation' | 'end';
+const orderStepList = ['start', 'validation', 'end'] as orderStep[];
 const firstStep = orderStepList[0];
 const prevStep = (step: orderStep) => {
   const stepIndex = orderStepList.findIndex((item) => item === step);
@@ -65,6 +66,7 @@ export const Order = () => {
     setStep(nextStep(step));
   };
 
+  const baseClassName = styles.container;
   return (
     <>
       {step === 'start' && (
@@ -74,7 +76,7 @@ export const Order = () => {
           setIngredients={setIngredients}
           handleCancel={handleCancel}
           handleFormSubmit={handleFormSubmit}
-          className={`${styles.container} ${styles.start}`}
+          className={`${baseClassName} ${styles.start}`}
         />
       )}
       {step === 'validation' && (
@@ -85,9 +87,10 @@ export const Order = () => {
           handleCancel={handleCancel}
           handleBack={handleBack}
           handleFormSubmit={handleFormSubmit}
-          className={`${styles.container} ${styles.validation}`}
+          className={`${baseClassName} ${styles.validation}`}
         />
       )}
+      {step === 'end' && <OrderEnd order={order} className={`${baseClassName} ${styles.end}`} />}
     </>
   );
 };

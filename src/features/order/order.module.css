@@ -9,6 +9,9 @@
 .validation {
 }
 
+.end {
+}
+
 @media bp-desktop {
   .start {
     display: grid;
