@@ -1,6 +1,7 @@
 import styles from './order-validation.module.css';
 import { useOrder } from 'data/order';
 import { Delivery } from './delivery';
+import { Summary } from './summary';
 import { Actions } from './actions';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -44,6 +45,7 @@ export const OrderValidation = () => {
         onChange={handleDeliveryModeChange}
         openContactForm={() => {}}
       />
+      <Summary {...order} />
       <Actions onCancel={handleCancel} onBack={handleBack} submitDisabled={submitDisabled} />
     </form>
   );
