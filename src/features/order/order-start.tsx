@@ -8,7 +8,7 @@ import type { order, ingredient } from 'data/model';
 import type { handleIngredientGroupChange } from './ingredient-group';
 import type { FormEventHandler } from 'react';
 
-type OrderStarProps = {
+type OrderStartProps = {
   order: order;
   setBase: (value: order['base']) => void;
   setIngredients: (value: order['ingredients']) => void;
@@ -24,7 +24,7 @@ export const OrderStart = ({
   handleCancel,
   handleFormSubmit,
   className,
-}: OrderStarProps) => {
+}: OrderStartProps) => {
   const handleBaseSelection: handleIngredientGroupChange = (current) => {
     if (current.length === 1) {
       setBase(bases.find((item) => item.id === current[0]) as ingredient);
