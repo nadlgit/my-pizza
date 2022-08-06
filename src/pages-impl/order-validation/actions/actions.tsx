@@ -11,13 +11,13 @@ type ActionsProps = {
 
 export const Actions = ({ onCancel, submitDisabled, onBack }: ActionsProps) => {
   return (
-    <section className={styles.actions}>
+    <div className={styles.actions}>
       <Button look="orange" onClick={() => onBack()}>
         <Image src={BackImg} alt="Retour" className={styles.backimg} />
         <span className={styles.backtxt}>Retour</span>
       </Button>
       <CancelButton onCancel={onCancel}>Annuler</CancelButton>
       <SubmitButton disabled={submitDisabled}>Valider</SubmitButton>
-    </section>
+    </div>
   );
 };
