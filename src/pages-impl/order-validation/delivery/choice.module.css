@@ -1,0 +1,67 @@
+@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+
+.choice {
+  --border-radius: 0.625rem;
+  --delivery-font-size: 1rem;
+  --check-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--delivery-font-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+}
+
+.label {
+  cursor: pointer;
+  position: relative;
+  padding: 0.5em;
+  text-align: center;
+  background-color: var(--color-transparent-white);
+}
+.choice label:first-of-type {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+.choice label:last-of-type {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.input:focus + .label {
+  outline-style: auto;
+}
+.input:focus:not(:focus-visible) + .label {
+  outline: none;
+}
+
+.input:checked + .label {
+  background-color: var(--color-green);
+}
+.input:checked + .label::after {
+  position: absolute;
+  top: calc(-0.48 * var(--check-height));
+  right: calc(-0.4 * var(--check-height));
+  content: ' ';
+  height: var(--check-height);
+  width: var(--check-height);
+  background-image: url('/images/check.png');
+  background-size: var(--check-height);
+}
+
+@media bp-tablet {
+  .choice {
+    --delivery-font-size: 1.25rem;
+    --check-height: 1.5625rem;
+  }
+}
+
+@media bp-desktop {
+  .choice {
+    --delivery-font-size: 1.5rem;
+    --check-height: 1.875rem;
+  }
+}
