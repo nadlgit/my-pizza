@@ -42,7 +42,7 @@
   content: ' ';
   height: var(--check-height);
   width: var(--check-height);
-  background-image: url('./check.png');
+  background-image: url('/images/check.png');
   background-size: var(--check-height);
 }
 

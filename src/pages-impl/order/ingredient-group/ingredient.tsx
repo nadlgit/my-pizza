@@ -2,12 +2,13 @@ import styles from './ingredient.module.css';
 import { Image } from 'shared/components/ui/image';
 
 import type { ingredient } from 'data/model';
+import type { ChangeEventHandler } from 'react';
 
 type IngredientProps = {
   inputType: 'radio' | 'checkbox';
   inputName: string;
   isInitiallySelected: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 } & Pick<ingredient, 'id' | 'title' | 'imgUrl' | 'price'>;
 
 export const Ingredient = ({

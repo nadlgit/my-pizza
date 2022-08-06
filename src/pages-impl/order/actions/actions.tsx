@@ -7,9 +7,9 @@ type ActionsProps = {
 
 export const Actions = ({ onCancel }: ActionsProps) => {
   return (
-    <section className={styles.actions}>
+    <div className={styles.actions}>
       <CancelButton onCancel={onCancel}>Annuler</CancelButton>
       <SubmitButton>Continuer</SubmitButton>
-    </section>
+    </div>
   );
 };

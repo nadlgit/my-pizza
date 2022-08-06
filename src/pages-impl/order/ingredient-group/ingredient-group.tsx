@@ -3,6 +3,7 @@ import { Ingredient } from './ingredient';
 import { useState } from 'react';
 
 import type { ingredient } from 'data/model';
+import type { ChangeEventHandler } from 'react';
 
 type ingredientSelection = ingredient['id'][];
 
@@ -27,7 +28,7 @@ export const IngredientGroup = ({
 }: IngredientGroupProps) => {
   const [selection, setSelection] = useState(defaultSelection);
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, checked } = e.target;
     let newSelection: ingredientSelection | undefined;
     if (type === 'radio') {
