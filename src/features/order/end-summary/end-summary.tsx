@@ -1,5 +1,6 @@
 import styles from './end-summary.module.css';
 import { contactInfo } from 'data/store-info';
+import { formatPrice } from 'shared/utils/helpers';
 
 import type { order } from 'data/model';
 
@@ -29,7 +30,7 @@ export const EndSummary = ({ id, deliveryMode, contact, amount }: EndSummaryProp
         </>
       )}
       <p>Montant à régler</p>
-      <p>{amount}</p>
+      <p>{formatPrice(amount)}</p>
     </div>
   );
 };
