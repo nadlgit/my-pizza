@@ -1,5 +1,5 @@
 import styles from './summary.module.css';
-import { deliveryExtraCharge } from 'data/order';
+import { DELIVERY_EXTRA_CHARGE } from 'data/order';
 import { formatPrice } from 'shared/utils/helpers';
 
 import type { order } from 'data/model';
@@ -14,7 +14,9 @@ export const Summary = ({ amount, base, ingredients, deliveryMode }: SummaryProp
       {ingredients.map((item) => (
         <SummaryItem key={item.id} label={item.title} price={item.price} />
       ))}
-      {deliveryMode === 'delivery' && <SummaryItem label="Livraison" price={deliveryExtraCharge} />}
+      {deliveryMode === 'delivery' && (
+        <SummaryItem label="Livraison" price={DELIVERY_EXTRA_CHARGE} />
+      )}
       <SummaryItem label="Total" price={amount} />
     </div>
   );

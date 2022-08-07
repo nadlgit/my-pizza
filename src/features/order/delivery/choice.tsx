@@ -1,5 +1,5 @@
 import styles from './choice.module.css';
-import { deliveryExtraCharge } from 'data/order';
+import { DELIVERY_EXTRA_CHARGE } from 'data/order';
 import { formatPrice } from 'shared/utils/helpers';
 
 import type { order } from 'data/model';
@@ -27,9 +27,9 @@ export const Choice = ({ defaultSelection, onChange }: ChoiceProps) => {
       </ChoiceItem>
       <ChoiceItem value="delivery" defaultSelection={defaultSelection} onChange={handleChange}>
         {`Livraison (+ ${
-          Number.isInteger(deliveryExtraCharge)
-            ? `${deliveryExtraCharge}€`
-            : formatPrice(deliveryExtraCharge)
+          Number.isInteger(DELIVERY_EXTRA_CHARGE)
+            ? `${DELIVERY_EXTRA_CHARGE}€`
+            : formatPrice(DELIVERY_EXTRA_CHARGE)
         })`}
       </ChoiceItem>
     </div>

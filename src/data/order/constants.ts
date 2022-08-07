@@ -3,7 +3,7 @@ import { updateOrderAmount } from './helpers';
 
 import type { order } from 'data/model';
 
-export const deliveryExtraCharge = 5;
+export const DELIVERY_EXTRA_CHARGE = 5;
 
 export const defaultOrder: order = Object.freeze(
   updateOrderAmount({
