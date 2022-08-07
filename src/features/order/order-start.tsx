@@ -1,5 +1,5 @@
-import { bases } from 'data/bases';
-import { ingredients } from 'data/ingredients';
+import { PIZZA_BASES } from 'data/bases';
+import { PIZZA_INGREDIENTS } from 'data/ingredients';
 import { Actions } from './actions';
 import { Preview } from './preview';
 import { IngredientGroup } from './ingredient-group';
@@ -27,11 +27,13 @@ export const OrderStart = ({
 }: OrderStartProps) => {
   const handleBaseSelection: handleIngredientGroupChange = (current) => {
     if (current.length === 1) {
-      setBase(bases.find((item) => item.id === current[0]) as ingredient);
+      setBase(PIZZA_BASES.find((item) => item.id === current[0]) as ingredient);
     }
   };
   const handleIngrSelection: handleIngredientGroupChange = (current) => {
-    const selection = current.map((id) => ingredients.find((item) => item.id === id) as ingredient);
+    const selection = current.map(
+      (id) => PIZZA_INGREDIENTS.find((item) => item.id === id) as ingredient
+    );
     setIngredients(selection);
   };
 
@@ -46,7 +48,7 @@ export const OrderStart = ({
         type="radio"
         name="base"
         title="Choisissez votre base"
-        list={bases}
+        list={PIZZA_BASES}
         defaultSelection={[order.base.id]}
         onChange={handleBaseSelection}
       />
@@ -54,7 +56,7 @@ export const OrderStart = ({
         type="checkbox"
         name="ingredient"
         title="Choisissez vos ingrédients"
-        list={ingredients}
+        list={PIZZA_INGREDIENTS}
         defaultSelection={order.ingredients.map((item) => item.id)}
         onChange={handleIngrSelection}
       />

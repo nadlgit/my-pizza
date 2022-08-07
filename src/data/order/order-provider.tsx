@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
 import { orderReducer } from './order-reducer';
-import { defaultOrder } from './constants';
+import { DEFAULT_ORDER } from './constants';
 
 import type { order } from 'data/model';
 import type { ReactNode } from 'react';
@@ -22,7 +22,7 @@ type OrderProviderProps = {
 export const OrderContext = createContext<OrderContextValue | undefined>(undefined);
 
 export const OrderProvider = ({ children }: OrderProviderProps) => {
-  const [order, dispatchOrder] = useReducer(orderReducer, defaultOrder);
+  const [order, dispatchOrder] = useReducer(orderReducer, DEFAULT_ORDER);
 
   const setBase = (value: order['base']) => {
     dispatchOrder({ type: 'SET_BASE', payload: { base: value } });

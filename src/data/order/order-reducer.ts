@@ -1,4 +1,4 @@
-import { defaultOrder } from './constants';
+import { DEFAULT_ORDER } from './constants';
 import { updateOrderAmount, newOrderId } from './helpers';
 
 import type { order } from 'data/model';
@@ -40,6 +40,6 @@ export const orderReducer = (state: order, action: orderReducerAction) => {
     case 'COMPLETE':
       return { ...state, id: newOrderId() };
     case 'CANCEL':
-      return defaultOrder;
+      return DEFAULT_ORDER;
   }
 };

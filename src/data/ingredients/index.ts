@@ -26,4 +26,4 @@ const rawIngredients = [
   queenconch,
 ];
 
-export const ingredients = Object.freeze(rawIngredients.map((item) => Object.freeze(item)));
+export const PIZZA_INGREDIENTS = Object.freeze(rawIngredients.map((item) => Object.freeze(item)));

@@ -1,5 +1,5 @@
 import styles from './end-summary.module.css';
-import { contactInfo } from 'data/store-info';
+import { STORE_CONTACT } from 'data/store-info';
 import { formatPrice } from 'shared/utils/helpers';
 
 import type { order } from 'data/model';
@@ -15,9 +15,9 @@ export const EndSummary = ({ id, deliveryMode, contact, amount }: EndSummaryProp
       {deliveryMode === 'pick-up' ? (
         <>
           <p>Retrait sur place</p>
-          <p>{contactInfo.address.line1}</p>
-          <p>{contactInfo.address.city}</p>
-          <p>{`Tel: ${contactInfo.phoneNumber}`}</p>
+          <p>{STORE_CONTACT.address.line1}</p>
+          <p>{STORE_CONTACT.address.city}</p>
+          <p>{`Tel: ${STORE_CONTACT.phoneNumber}`}</p>
         </>
       ) : (
         <>

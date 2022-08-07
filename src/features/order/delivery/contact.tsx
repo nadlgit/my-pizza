@@ -1,6 +1,6 @@
 import styles from './contact.module.css';
 import { Button } from 'shared/components/ui/button';
-import { contactInfo } from 'data/store-info';
+import { STORE_CONTACT } from 'data/store-info';
 
 import type { order } from 'data/model';
 
@@ -24,9 +24,9 @@ const StoreContact = () => {
   return (
     <>
       <p>Nos coordonnées</p>
-      <p>{contactInfo.address.line1}</p>
-      <p>{contactInfo.address.city}</p>
-      <p>{`Tel: ${contactInfo.phoneNumber}`}</p>
+      <p>{STORE_CONTACT.address.line1}</p>
+      <p>{STORE_CONTACT.address.city}</p>
+      <p>{`Tel: ${STORE_CONTACT.phoneNumber}`}</p>
     </>
   );
 };

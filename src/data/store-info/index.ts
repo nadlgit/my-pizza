@@ -1,4 +1,4 @@
-export const contactInfo = Object.freeze({
+export const STORE_CONTACT = Object.freeze({
   phoneNumber: '12 34 56 78 90',
   address: Object.freeze({
     line1: '29 rue de la Pâte',

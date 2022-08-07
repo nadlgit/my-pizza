@@ -1,5 +1,5 @@
 import styles from './contact.module.css';
-import { contactInfo } from 'data/store-info';
+import { STORE_CONTACT } from 'data/store-info';
 import dynamic from 'next/dynamic';
 
 import type { MapProps } from './map';
@@ -16,9 +16,9 @@ export const Contact = () => {
     <div className={styles.contact}>
       <div className={styles.info}>
         <p>Nous contacter</p>
-        <p>{contactInfo.address.line1}</p>
-        <p>{contactInfo.address.city}</p>
-        <p>{`Tel: ${contactInfo.phoneNumber}`}</p>
+        <p>{STORE_CONTACT.address.line1}</p>
+        <p>{STORE_CONTACT.address.city}</p>
+        <p>{`Tel: ${STORE_CONTACT.phoneNumber}`}</p>
       </div>
       <Map />
     </div>
