@@ -49,7 +49,7 @@ const CustomerContact = ({
       ) : (
         <p>Veuillez saisir vos coordonnées</p>
       )}
-      <Button look="yellow" onClick={openContactForm}>
+      <Button className={styles.button} onClick={openContactForm}>
         Modifier
       </Button>
     </>

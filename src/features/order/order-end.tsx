@@ -1,5 +1,5 @@
+import { Actions } from './actions';
 import { EndSummary } from './end-summary';
-import { Button } from 'shared/components/ui/button';
 
 import type { order } from 'data/model';
 
@@ -17,9 +17,7 @@ export const OrderEnd = ({ order, className }: OrderEndProps) => {
         contact={order?.contact}
         amount={order.amount}
       />
-      <Button semantic="link" url="/" look="orange">
-        Retour à l&apos;accueil
-      </Button>
+      <Actions home={{ label: "Retour à l'accueil" }} />
     </div>
   );
 };

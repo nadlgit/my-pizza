@@ -1,16 +1,18 @@
-import { Button } from './button';
+import styles from './button.module.css';
+import Link from 'next/link';
 
-import type { ReactNode } from 'react';
+import type { DetailedHTMLProps, AnchorHTMLAttributes } from 'react';
 
 type LinkButtonProps = {
-  children: ReactNode;
   url: string;
-};
+} & DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
 
-export const LinkButton = ({ children, url }: LinkButtonProps) => {
+export const LinkButton = ({ url, className, children, ...otherprops }: LinkButtonProps) => {
   return (
-    <Button semantic="link" url={url} look="orange">
-      {children}
-    </Button>
+    <Link href={url}>
+      <a className={`${styles.button} ${styles.link} ${className ?? ''}`} {...otherprops}>
+        {children}
+      </a>
+    </Link>
   );
 };

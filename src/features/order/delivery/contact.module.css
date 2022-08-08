@@ -1,2 +1,23 @@
+@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
+
 .contact {
+  --button-font-size: 1rem;
+}
+
+.button {
+  font-size: var(--button-font-size);
+  color: var(--color-dark-gray);
+  background-color: var(--color-yellow);
+}
+
+@media bp-tablet {
+  .contact {
+    --button-font-size: 1.25rem;
+  }
+}
+
+@media bp-desktop {
+  .contact {
+    --button-font-size: 1.75rem;
+  }
 }

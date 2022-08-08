@@ -1,60 +1,16 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
-
 .button {
+  display: inline-block;
   border: none;
+  border-radius: 100vmin;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  font-weight: var(--font-weight-semibold);
+  padding: 0.2em 0.5em;
+}
+
+.button:not(:disabled) {
+  cursor: pointer;
 }
 
 .link {
   text-decoration: none;
-}
-
-.base {
-  --button-font-size: 1rem;
-  display: inline-block;
-  padding: 0.2em 0.5em;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--button-font-size);
-  color: var(--button-text-color);
-  background-color: var(--button-bg-color, lightgray);
-  border-radius: 100vmin;
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-}
-.base:not(:disabled) {
-  cursor: pointer;
-}
-
-.disabled {
-  --button-text-color: var(--color-white);
-  --button-bg-color: var(--color-dark-gray);
-}
-
-.green {
-  --button-text-color: var(--color-white);
-  --button-bg-color: var(--color-green);
-}
-
-.red {
-  --button-text-color: var(--color-white);
-  --button-bg-color: var(--color-red);
-}
-
-.orange {
-  --button-text-color: var(--color-white);
-  --button-bg-color: var(--color-orange);
-}
-
-.yellow {
-  --button-bg-color: var(--color-yellow);
-}
-
-@media bp-tablet {
-  .base {
-    --button-font-size: 1.25rem;
-  }
-}
-
-@media bp-desktop {
-  .base {
-    --button-font-size: 1.75rem;
-  }
 }

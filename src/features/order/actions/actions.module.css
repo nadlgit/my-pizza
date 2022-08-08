@@ -1,8 +1,39 @@
-@value bp-tablet from 'shared/styles/breakpoints.module.css';
+@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
 
 .actions {
   display: flex;
   justify-content: center;
+  --button-font-size: 1rem;
+}
+
+.backbtn {
+  font-size: var(--button-font-size);
+  color: var(--color-white);
+  background-color: var(--color-orange);
+}
+
+.cancelbtn {
+  font-size: var(--button-font-size);
+  color: var(--color-white);
+  background-color: var(--color-red);
+}
+
+.submitbtn {
+  font-size: var(--button-font-size);
+  color: var(--color-white);
+  background-color: var(--color-green);
+}
+
+.disabledbtn {
+  font-size: var(--button-font-size);
+  color: var(--color-white);
+  background-color: var(--color-dark-gray);
+}
+
+.homebtn {
+  color: var(--color-white);
+  background-color: var(--color-orange);
+  font-size: var(--button-font-size);
 }
 
 .backimg {
@@ -15,11 +46,21 @@
 }
 
 @media bp-tablet {
+  .actions {
+    --button-font-size: 1.25rem;
+  }
+
   .backimg {
     display: none;
   }
 
   .backtxt {
     display: inline;
+  }
+}
+
+@media bp-desktop {
+  .actions {
+    --button-font-size: 1.75rem;
   }
 }
