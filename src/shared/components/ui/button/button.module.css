@@ -1,10 +1,14 @@
 .button {
+  --button-height: 1.8em;
   display: inline-block;
+  min-height: var(--button-height);
+  line-height: var(--button-height);
+  padding-inline: 0.5em;
   border: none;
   border-radius: 100vmin;
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   font-weight: var(--font-weight-semibold);
-  padding: 0.2em 0.5em;
+  text-align: center;
 }
 
 .button:not(:disabled) {
