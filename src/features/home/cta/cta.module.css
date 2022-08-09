@@ -1,17 +1,19 @@
-@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+@value bp-landscape from 'shared/styles/breakpoints.module.css';
 
 .cta {
-  --cta-font-size: 1.25rem;
+  --cta-font-size: clamp(1.25rem, 4vmin, 4vmin);
+  --cta-max-width: max(45rem, 80vw);
   --cta-margin-block: 10vh;
-  --button-font-size: 1rem;
   display: grid;
   place-items: center;
-  gap: 0.6em;
-  padding: 1em;
+  gap: clamp(0.8em, 3.6vmin, 3.6vmin);
+  max-width: var(--cta-max-width);
   margin-block: var(--cta-margin-block);
   margin-inline: auto;
+  padding: clamp(1em, 5vh, 5vh);
   color: var(--color-dark-red);
   background-color: var(--color-transparent-yellow);
+  border-radius: min(0.625rem, calc(100vw - min(100vw, var(--cta-max-width))));
   font-weight: var(--font-weight-semibold);
   font-size: var(--cta-font-size);
   text-align: center;
@@ -24,23 +26,8 @@
 .button {
   color: var(--color-white);
   background-color: var(--color-orange);
-  font-size: var(--button-font-size);
-}
-
-@media bp-tablet {
-  .cta {
-    --cta-font-size: 1.5rem;
-    --button-font-size: 1.25rem;
-    border-radius: 0.625rem;
-    max-width: max(44ch, 80vw);
-  }
-}
-
-@media bp-desktop {
-  .cta {
-    --cta-font-size: 2rem;
-    --button-font-size: 1.75rem;
-  }
+  font-size: var(--cta-font-size);
+  padding: 0.5em 1.5em !important;
 }
 
 @media bp-landscape {
