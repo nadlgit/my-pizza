@@ -1,7 +1,7 @@
 .contact {
   --contact-min-width: min(30rem, 100vw);
-  --contact-padding: clamp(0.5em, 3vmin, 3vmin);
-  --contact-text-font-size: clamp(1rem, 3vmin, 3vmin);
+  --contact-padding: max(0.5em, 3vmin);
+  --contact-text-font-size: max(1rem, 3vmin);
   --contact-info-gap: 0.75em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
