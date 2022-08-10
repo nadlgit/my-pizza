@@ -41,6 +41,9 @@
 }
 
 body {
+  --header-logo-height: clamp(3.75rem, 12vmin, 12vmin);
+  --header-padding: clamp(0.25rem, 1vmin, 1vmin);
+  --header-min-height: calc(var(--header-logo-height) + 2 * var(--header-padding));
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-regular);
   color: var(--color-dark-gray);

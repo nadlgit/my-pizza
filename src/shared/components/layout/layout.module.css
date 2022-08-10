@@ -1,6 +1,4 @@
 .container {
-  --logo-height: clamp(3.75rem, 12vmin, 12vmin);
-  --header-padding: clamp(0.25rem, 1vmin, 1vmin);
   min-height: 100vh;
 }
 
@@ -28,6 +26,6 @@
 }
 
 .logo {
-  height: var(--logo-height);
-  width: var(--logo-height);
+  height: var(--header-logo-height);
+  width: var(--header-logo-height);
 }

@@ -1,6 +1,7 @@
 @value bp-desktop from 'shared/styles/breakpoints.module.css';
 
 .container {
+  min-height: calc(100vh - var(--header-min-height));
 }
 
 .start {
@@ -17,6 +18,7 @@
     display: grid;
     grid-template-columns: 24rem auto;
     grid-template-rows: repeat(3, auto);
+    align-items: center;
   }
 
   .start > :first-child {

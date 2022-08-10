@@ -24,6 +24,7 @@
   .container {
     --preview-height: 22.5rem;
     --price-font-size: 2.5rem;
+    height: 100%;
     background-image: var(--color-yellow-orange-gradient);
   }
 
