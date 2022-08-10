@@ -1,47 +1,35 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
-
 .contact {
-  --contact-gap: 0.5em;
-  max-width: max(30rem, 40vw);
-  min-height: min(10rem, 40vmin);
+  --contact-min-width: min(30rem, 100vw);
+  --contact-padding: clamp(0.5em, 3vmin, 100vmax);
+  --contact-text-font-size: clamp(1rem, 3vmin, 3vmin);
+  --contact-info-gap: 0.75em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
-  gap: var(--contact-gap);
-  padding: var(--contact-gap);
+  gap: calc(0.8 * var(--contact-padding));
+  min-width: var(--contact-min-width);
+  width: fit-content;
   margin-inline: auto;
+  padding: var(--contact-padding);
   background-color: var(--color-transparent-white);
-  border-radius: 0.625rem;
+  border-radius: min(0.625rem, calc(100vw - min(100vw, var(--contact-min-width))));
+}
+
+.contact > :last-child {
+  min-height: max(10rem, 25vmin);
 }
 
 .info {
-  --title-font-size: 1.25rem;
-  --text-font-size: 1rem;
-  --info-gap: 0.75em;
+  font-size: var(--contact-text-font-size);
   text-align: center;
-  font-size: var(--text-font-size);
 }
 
 .info p:first-child {
-  margin-bottom: var(--info-gap);
+  margin-bottom: var(--contact-info-gap);
   font-weight: var(--font-weight-bold);
-  font-size: var(--title-font-size);
+  font-size: calc(1.2 * var(--contact-text-font-size));
 }
 
 .info p:last-child {
-  margin-top: var(--info-gap);
-}
-
-@media bp-tablet {
-  .info {
-    --title-font-size: 1.5rem;
-    --text-font-size: 1.25rem;
-  }
-}
-
-@media bp-desktop {
-  .info {
-    --title-font-size: 1.75rem;
-    --text-font-size: 1.5rem;
-  }
+  margin-top: var(--contact-info-gap);
 }
