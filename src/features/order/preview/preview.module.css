@@ -1,8 +1,10 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
+@value bp-desktop from 'shared/styles/breakpoints.module.css';
 
 .container {
-  --price-font-size: 1.25rem;
-  background-color: var(--color-yellow);
+  --price-font-size: max(1.25rem, 4vmin);
+  align-self: center;
+  display: grid;
+  place-items: center;
 }
 
 .preview {
@@ -10,21 +12,18 @@
 }
 
 .price {
+  width: fit-content;
+  margin-top: 0.5em;
+  padding: 0.2em 0.5em;
+  background-color: var(--color-yellow);
   font-weight: var(--font-weight-bold);
   font-size: var(--price-font-size);
-}
-
-@media bp-tablet {
-  .container {
-    --price-font-size: 1.5rem;
-  }
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 }
 
 @media bp-desktop {
   .container {
-    --preview-height: 22.5rem;
-    --price-font-size: 2.5rem;
-    height: 100%;
+    --preview-height: calc(0.9 * var(--desktop-col1-width));
     background-image: var(--color-yellow-orange-gradient);
   }
 
@@ -44,5 +43,10 @@
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .price {
+    background-color: transparent;
+    box-shadow: none;
   }
 }

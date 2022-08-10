@@ -1,16 +1,14 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
-
 .input {
   position: absolute;
   opacity: 0;
 }
 
 .label {
-  --img-height: 3.125rem;
+  --font-size: max(1rem, 3vmin);
+  --img-height: max(3.125rem, 9vmin);
+  --check-height: max(1rem, 3vmin);
   --border-radius: 0.625rem;
-  --check-height: 1.25rem;
-  --title-font-size: 1rem;
-  --price-font-size: 0.875rem;
+  min-width: calc(var(--img-height) + 12ch);
   position: relative;
   display: inline-grid;
   grid-template-areas:
@@ -18,6 +16,7 @@
     'image price';
   grid-template-columns: var(--img-height) auto;
   justify-items: center;
+  font-size: var(--font-size);
   background-color: var(--color-white);
   border: 1px solid var(--color-dark-gray);
   border-radius: var(--border-radius);
@@ -37,8 +36,8 @@
 }
 .input:checked + .label::after {
   position: absolute;
-  top: calc(-0.48 * var(--check-height));
-  right: calc(-0.4 * var(--check-height));
+  top: calc(-0.55 * var(--check-height));
+  right: calc(-0.35 * var(--check-height));
   content: ' ';
   height: var(--check-height);
   width: var(--check-height);
@@ -60,28 +59,11 @@
 .title {
   grid-area: title;
   align-self: end;
-  font-size: var(--title-font-size);
   font-weight: var(--font-weight-semibold);
 }
 
 .price {
   grid-area: price;
   align-self: start;
-  font-size: var(--price-font-size);
-}
-
-@media bp-tablet {
-  .label {
-    --img-height: 4.0625rem;
-    --check-height: 1.5625rem;
-    --title-font-size: 1.25rem;
-    --price-font-size: 1rem;
-  }
-}
-
-@media bp-desktop {
-  .label {
-    --img-height: 4.6875rem;
-    --check-height: 1.875rem;
-  }
+  font-size: calc(0.75 * var(--font-size));
 }

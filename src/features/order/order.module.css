@@ -1,27 +1,35 @@
 @value bp-desktop from 'shared/styles/breakpoints.module.css';
 
 .container {
+  --desktop-col1-width: 30vw;
+  display: grid;
+  align-items: start;
   min-height: calc(100vh - var(--header-min-height));
 }
-
-.start {
-}
-
-.validation {
-}
-
-.end {
+.container > :last-child {
+  align-self: end;
 }
 
 @media bp-desktop {
   .start {
-    display: grid;
-    grid-template-columns: 24rem auto;
-    grid-template-rows: repeat(3, auto);
-    align-items: center;
+    --desktop-nb-rows: 3;
+    grid-template-columns: var(--desktop-col1-width) auto;
+    grid-template-rows: repeat(var(--desktop-nb-rows), auto);
   }
-
   .start > :first-child {
-    grid-row: span 3;
+    grid-row: span var(--desktop-nb-rows);
+    height: 100%;
+  }
+}
+
+@media bp-desktop, (orientation: landscape) {
+  .validation {
+    --desktop-nb-rows: 2;
+    grid-template-columns: var(--desktop-col1-width) auto;
+    grid-template-rows: repeat(var(--desktop-nb-rows), auto);
+  }
+  .validation > :first-child {
+    grid-row: span var(--desktop-nb-rows);
+    height: 100%;
   }
 }

@@ -1,4 +1,4 @@
-@value bp-tablet, bp-desktop, bp-landscape from 'shared/styles/breakpoints.module.css';
+@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
 
 .choice {
   --border-radius: 0.625rem;

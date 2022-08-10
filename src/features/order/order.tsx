@@ -90,7 +90,7 @@ export const Order = () => {
           className={`${baseClassName} ${styles.validation}`}
         />
       )}
-      {step === 'end' && <OrderEnd order={order} className={`${baseClassName} ${styles.end}`} />}
+      {step === 'end' && <OrderEnd order={order} className={baseClassName} />}
     </>
   );
 };

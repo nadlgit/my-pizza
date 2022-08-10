@@ -1,66 +1,54 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
+@value bp-tablet from 'shared/styles/breakpoints.module.css';
 
 .actions {
+  --button-min-width: max(8.5rem, 30vmin);
   display: flex;
   justify-content: center;
-  --button-font-size: 1rem;
+  gap: 0.35em;
+  margin-block: 1em;
+  font-size: max(1.25rem, 4vmin);
+  color: var(--color-white);
 }
 
 .backbtn {
-  font-size: var(--button-font-size);
-  color: var(--color-white);
   background-color: var(--color-orange);
 }
-
-.cancelbtn {
-  font-size: var(--button-font-size);
-  color: var(--color-white);
-  background-color: var(--color-red);
-}
-
-.submitbtn {
-  font-size: var(--button-font-size);
-  color: var(--color-white);
-  background-color: var(--color-green);
-}
-
-.disabledbtn {
-  font-size: var(--button-font-size);
-  color: var(--color-white);
-  background-color: var(--color-dark-gray);
-}
-
-.homebtn {
-  color: var(--color-white);
-  background-color: var(--color-orange);
-  font-size: var(--button-font-size);
-}
-
 .backimg {
   width: 1em;
   height: 1em;
 }
-
 .backtxt {
   display: none;
 }
 
-@media bp-tablet {
+.cancelbtn {
+  min-width: var(--button-min-width);
+  background-color: var(--color-red);
+}
+
+.submitbtn {
+  min-width: var(--button-min-width);
+  background-color: var(--color-green);
+}
+
+.disabledbtn {
+  min-width: var(--button-min-width);
+  background-color: var(--color-dark-gray);
+}
+
+.homebtn {
+  background-color: var(--color-orange);
+}
+
+@media bp-tablet, (orientation: landscape) {
   .actions {
-    --button-font-size: 1.25rem;
+    gap: 3vmin;
   }
 
   .backimg {
     display: none;
   }
-
   .backtxt {
     display: inline;
-  }
-}
-
-@media bp-desktop {
-  .actions {
-    --button-font-size: 1.75rem;
   }
 }
