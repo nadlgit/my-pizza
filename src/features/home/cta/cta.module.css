@@ -1,5 +1,3 @@
-@value bp-landscape from 'shared/styles/breakpoints.module.css';
-
 .cta {
   --cta-font-size: max(1.25rem, 4vmin);
   --cta-max-width: max(45rem, 80vw);
@@ -30,7 +28,7 @@
   font-size: var(--cta-font-size);
 }
 
-@media bp-landscape {
+@media (orientation: landscape) {
   .cta {
     --cta-margin-block: 5vh;
   }
