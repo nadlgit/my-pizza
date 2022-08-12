@@ -1,23 +1,31 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
-
 .contact {
-  --button-font-size: 1rem;
+  --contact-text-font-size: max(1rem, 2.5vmin);
+  --contact-bigger-font-size: max(1rem, 3vmin);
+  --contact-info-gap: 0.5em;
+  padding: max(0.5em, 3vmin);
+  font-size: var(--contact-text-font-size);
+  text-align: center;
+  background-color: var(--color-transparent-white);
+  border-radius: 0.625rem;
+}
+
+.contact h2 {
+  margin-bottom: var(--contact-info-gap);
+  font-size: var(--contact-bigger-font-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+.phone {
+  margin-top: var(--contact-info-gap);
+}
+
+.nocontact {
+  margin-block: 1em;
+  font-style: italic;
 }
 
 .button {
-  font-size: var(--button-font-size);
+  font-size: var(--contact-bigger-font-size);
   color: var(--color-dark-gray);
   background-color: var(--color-yellow);
-}
-
-@media bp-tablet {
-  .contact {
-    --button-font-size: 1.25rem;
-  }
-}
-
-@media bp-desktop {
-  .contact {
-    --button-font-size: 1.75rem;
-  }
 }

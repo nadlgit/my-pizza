@@ -1,4 +1,31 @@
+@value bp-desktop from 'shared/styles/breakpoints.module.css';
+
 .delivery {
-  padding: 0.625rem;
+  --delivery-padding: max(3vmin, 0.625rem);
+  display: flex;
+  align-items: center;
+  gap: var(--delivery-padding);
+  padding: max(3vh, var(--delivery-padding)) var(--delivery-padding);
   background-image: var(--color-yellow-orange-gradient);
+}
+
+.delivery > :first-child {
+  flex-basis: 30%;
+}
+
+.delivery > :last-child {
+  flex-basis: 70%;
+}
+
+@media bp-desktop, (orientation: landscape) {
+  .delivery {
+    flex-direction: column;
+    gap: max(10%, var(--delivery-padding));
+  }
+
+  .delivery > :first-child,
+  .delivery > :last-child {
+    flex-basis: auto;
+    width: 100%;
+  }
 }

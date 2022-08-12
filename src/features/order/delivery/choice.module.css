@@ -1,12 +1,9 @@
-@value bp-tablet, bp-desktop from 'shared/styles/breakpoints.module.css';
-
 .choice {
+  --check-height: max(1rem, 3vmin);
   --border-radius: 0.625rem;
-  --delivery-font-size: 1rem;
-  --check-height: 1.25rem;
   display: flex;
   flex-direction: column;
-  font-size: var(--delivery-font-size);
+  font-size: max(1rem, 3vmin);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -43,25 +40,11 @@
 }
 .input:checked + .label::after {
   position: absolute;
-  top: calc(-0.48 * var(--check-height));
-  right: calc(-0.4 * var(--check-height));
+  top: calc(-0.55 * var(--check-height));
+  right: calc(-0.35 * var(--check-height));
   content: ' ';
   height: var(--check-height);
   width: var(--check-height);
   background-image: url('/images/check.png');
   background-size: var(--check-height);
-}
-
-@media bp-tablet {
-  .choice {
-    --delivery-font-size: 1.25rem;
-    --check-height: 1.5625rem;
-  }
-}
-
-@media bp-desktop {
-  .choice {
-    --delivery-font-size: 1.5rem;
-    --check-height: 1.875rem;
-  }
 }
