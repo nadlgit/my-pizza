@@ -1,7 +1,7 @@
 {
   "id": "ingr-egg",
   "title": "Oeuf",
-  "price": 2,
+  "price": 1,
   "imgUrl": "/images/ingredients/egg.png",
   "previewUrl": "/images/ingredients/preview-egg.png",
   "previewOnTop": true

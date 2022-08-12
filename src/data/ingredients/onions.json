@@ -1,7 +1,7 @@
 {
   "id": "ingr-onions",
   "title": "Oignons",
-  "price": 2,
+  "price": 0.1,
   "imgUrl": "/images/ingredients/onions.png",
   "previewUrl": "/images/ingredients/preview-onions.png"
 }

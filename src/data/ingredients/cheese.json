@@ -1,7 +1,7 @@
 {
   "id": "ingr-cheese",
   "title": "Fromage",
-  "price": 2,
+  "price": 0.3,
   "imgUrl": "/images/ingredients/cheese.png",
   "previewUrl": "/images/ingredients/preview-cheese.png"
 }

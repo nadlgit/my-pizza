@@ -1,7 +1,7 @@
 {
   "id": "ingr-mushrooms",
   "title": "Champignons",
-  "price": 2,
+  "price": 0.3,
   "imgUrl": "/images/ingredients/mushrooms.png",
   "previewUrl": "/images/ingredients/preview-mushrooms.png"
 }

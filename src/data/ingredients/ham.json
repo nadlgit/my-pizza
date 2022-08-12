@@ -1,7 +1,7 @@
 {
   "id": "ingr-ham",
   "title": "Jambon",
-  "price": 2,
+  "price": 0.3,
   "imgUrl": "/images/ingredients/ham.png",
   "previewUrl": "/images/ingredients/preview-ham.png"
 }

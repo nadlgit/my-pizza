@@ -1,7 +1,7 @@
 {
   "id": "ingr-chicken",
   "title": "Poulet",
-  "price": 2,
+  "price": 0.5,
   "imgUrl": "/images/ingredients/chicken.png",
   "previewUrl": "/images/ingredients/preview-chicken.png"
 }
