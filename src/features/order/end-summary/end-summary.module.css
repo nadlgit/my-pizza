@@ -1,2 +1,21 @@
 .endsummary {
+  align-self: center;
+  margin-top: max(1em, 5vh);
+  margin-inline: max(1em, 10vw);
+  padding: 1.5em;
+  font-size: max(1rem, 3vmin);
+  text-align: center;
+  background-color: var(--color-transparent-white);
+  border-radius: 0.625rem;
+}
+
+.title {
+  font-size: max(1.25rem, 4vmin);
+  font-weight: var(--font-weight-bold);
+}
+
+.heading {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  font-weight: var(--font-weight-semibold);
 }

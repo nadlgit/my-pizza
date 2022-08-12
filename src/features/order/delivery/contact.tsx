@@ -44,7 +44,7 @@ const CustomerContact = ({
     <>
       {contact ? (
         <>
-          <p>{contact?.name}</p>
+          <p className={styles.name}>{contact?.name}</p>
           <p>{contact?.address?.line1}</p>
           {contact?.address?.line2 && <p>{contact?.address?.line2}</p>}
           <p>{contact?.address?.city}</p>

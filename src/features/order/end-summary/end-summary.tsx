@@ -9,19 +9,19 @@ type EndSummaryProps = Pick<order, 'id' | 'deliveryMode' | 'contact' | 'amount'>
 export const EndSummary = ({ id, deliveryMode, contact, amount }: EndSummaryProps) => {
   return (
     <div className={styles.endsummary}>
-      <p>Votre commande a bien été prise en compte.</p>
-      <p>Numéro de commande</p>
+      <p className={styles.title}>Votre commande a bien été prise en compte.</p>
+      <p className={styles.heading}>Numéro de commande</p>
       <p>{id}</p>
       {deliveryMode === 'pick-up' ? (
         <>
-          <p>Retrait sur place</p>
+          <p className={styles.heading}>Retrait sur place</p>
           <p>{STORE_CONTACT.address.line1}</p>
           <p>{STORE_CONTACT.address.city}</p>
           <p>{`Tel: ${STORE_CONTACT.phoneNumber}`}</p>
         </>
       ) : (
         <>
-          <p>Livraison</p>
+          <p className={styles.heading}>Livraison</p>
           <p>{contact?.name}</p>
           <p>{contact?.address?.line1}</p>
           {contact?.address?.line2 && <p>{contact?.address?.line2}</p>}
@@ -29,7 +29,7 @@ export const EndSummary = ({ id, deliveryMode, contact, amount }: EndSummaryProp
           <p>{`Tel: ${contact?.phoneNumber}`}</p>
         </>
       )}
-      <p>Montant à régler</p>
+      <p className={styles.heading}>Montant à régler</p>
       <p>{formatPrice(amount)}</p>
     </div>
   );
