@@ -1,2 +1,24 @@
 .summary {
+  margin: max(1em, 5vmin);
+  padding: 1.5em;
+  font-size: max(1rem, 3vmin);
+  background-color: var(--color-transparent-white);
+  border-radius: 0.625rem;
+}
+
+.summary h2 {
+  margin-bottom: 1em;
+  font-size: max(1.25rem, 4vmin);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.summary p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  margin-top: 1em;
+  font-weight: var(--font-weight-semibold);
 }

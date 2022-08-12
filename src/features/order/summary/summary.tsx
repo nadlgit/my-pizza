@@ -8,8 +8,8 @@ type SummaryProps = Pick<order, 'amount' | 'base' | 'ingredients' | 'deliveryMod
 
 export const Summary = ({ amount, base, ingredients, deliveryMode }: SummaryProps) => {
   return (
-    <div className={styles.summary}>
-      <p>Récapitulatif de votre commande</p>
+    <section className={styles.summary}>
+      <h2>Récapitulatif de votre commande</h2>
       <SummaryItem label={`Base: ${base.title}`} price={base.price} />
       {ingredients.map((item) => (
         <SummaryItem key={item.id} label={item.title} price={item.price} />
@@ -17,15 +17,15 @@ export const Summary = ({ amount, base, ingredients, deliveryMode }: SummaryProp
       {deliveryMode === 'delivery' && (
         <SummaryItem label="Livraison" price={DELIVERY_EXTRA_CHARGE} />
       )}
-      <SummaryItem label="Total" price={amount} />
-    </div>
+      <SummaryItem label="Total" price={amount} isTotal />
+    </section>
   );
 };
 
-type SummaryItemProps = { label: string; price: number };
+type SummaryItemProps = { label: string; price: number; isTotal?: boolean };
 
-const SummaryItem = ({ label, price }: SummaryItemProps) => (
-  <p>
+const SummaryItem = ({ label, price, isTotal }: SummaryItemProps) => (
+  <p className={isTotal ? styles.total : ''}>
     <span>{label}</span>
     <span>{formatPrice(price)}</span>
   </p>
