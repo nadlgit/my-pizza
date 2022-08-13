@@ -17,6 +17,5 @@ export const newOrderId = () => {
   const value = new Date();
   value.setFullYear(1970, 0, 1);
   value.setHours(0);
-  console.log(value);
   return value.getTime();
 };
