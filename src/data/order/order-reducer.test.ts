@@ -30,7 +30,7 @@ describe('orderReducer', () => {
     },
   ];
 
-  it('SET_BASE action: return new object with base and amount fields updated', () => {
+  it('SET_BASE action should return new object with base and amount fields updated', () => {
     const value: order = { ...DEFAULT_ORDER };
     const expected: order = updateOrderAmount({
       ...value,
@@ -43,7 +43,7 @@ describe('orderReducer', () => {
     expect(res).toEqual(expected);
   });
 
-  it('SET_INGREDIENTS action: return new object with ingredients and amount fields updated', () => {
+  it('SET_INGREDIENTS action should return new object with ingredients and amount fields updated', () => {
     const value: order = { ...DEFAULT_ORDER };
     const expected: order = updateOrderAmount({
       ...value,
@@ -59,7 +59,7 @@ describe('orderReducer', () => {
     expect(res).toEqual(expected);
   });
 
-  it('SET_DELIVERY action: return new object with deliveryMode and amount fields updated', () => {
+  it('SET_DELIVERY action should return new object with deliveryMode and amount fields updated', () => {
     const value: order = { ...DEFAULT_ORDER };
     const expected: order = updateOrderAmount({
       ...value,
@@ -75,7 +75,7 @@ describe('orderReducer', () => {
     expect(res).toEqual(expected);
   });
 
-  it('SET_CONTACT action: return new object with contact and amount fields updated', () => {
+  it('SET_CONTACT action should return new object with contact and amount fields updated', () => {
     const value: order = { ...DEFAULT_ORDER };
     const expected: order = updateOrderAmount({
       ...value,
@@ -95,7 +95,7 @@ describe('orderReducer', () => {
     expect(res).toEqual(expected);
   });
 
-  it('COMPLETE action: return new object with id field updated', () => {
+  it('COMPLETE action should return new object with id field updated', () => {
     const value: order = { ...DEFAULT_ORDER };
 
     const res = orderReducer(value, {
@@ -106,7 +106,7 @@ describe('orderReducer', () => {
     expect(res.id).not.toEqual(value.id);
   });
 
-  it('CANCEL action: return new object with default order fields', () => {
+  it('CANCEL action should return new object with default order fields', () => {
     const value: order = {
       id: 98,
       base: { ...fakePizzaBase },

@@ -6,7 +6,7 @@ describe('formatPrice', () => {
     [0.7, '0,70€'],
     [19.386, '19,39€'],
     [5.412, '5,41€'],
-  ])('for %f', (value, expected) => {
+  ])('should format %f', (value, expected) => {
     expect(formatPrice(value)).toBe(expected);
   });
 });

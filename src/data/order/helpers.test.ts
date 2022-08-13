@@ -1,4 +1,4 @@
-import { updateOrderAmount } from './helpers';
+import { updateOrderAmount, newOrderId } from './helpers';
 import { DELIVERY_EXTRA_CHARGE } from './constants';
 
 import type { order, ingredient } from 'data/model';
@@ -73,5 +73,13 @@ describe('updateOrderAmount', () => {
     const res = updateOrderAmount(value);
     expect(res).not.toBe(value);
     expect(res).toEqual(expected);
+  });
+});
+
+describe('newOrderId', () => {
+  it('should return different values at each call', () => {
+    const res1 = newOrderId();
+    const res2 = newOrderId();
+    expect(res2).not.toEqual(res1);
   });
 });
