@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { orderReducer } from './order-reducer';
-import { DEFAULT_ORDER } from './constants';
+import { DEFAULT_ORDER } from './default-order';
 
 import type { order } from 'data/model';
 

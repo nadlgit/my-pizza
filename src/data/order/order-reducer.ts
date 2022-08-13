@@ -1,4 +1,4 @@
-import { DEFAULT_ORDER } from './constants';
+import { DEFAULT_ORDER } from './default-order';
 import { updateOrderAmount, newOrderId } from './helpers';
 
 import type { order } from 'data/model';
