@@ -60,7 +60,7 @@ describe('updateOrderAmount', () => {
       amountExtraPart: 0,
       deliveryMode: 'delivery',
     };
-    const expected = {
+    const expected: order = {
       ...value,
       amount:
         fakePizzaBase.price +
