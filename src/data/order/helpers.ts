@@ -13,9 +13,6 @@ export const updateOrderAmount = (order: order): order => {
   };
 };
 
-export const newOrderId = () => {
-  const value = new Date();
-  value.setFullYear(1970, 0, 1);
-  value.setHours(0);
-  return value.getTime();
-};
+//NB: in real world application order IDs should be provided by a backend
+var _myPizzaOrderId = 1;
+export const newOrderId = () => _myPizzaOrderId++;
