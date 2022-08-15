@@ -23,9 +23,11 @@ export const Modal = ({ isOpen, close, children }: ModalProps) => {
   return isMounted && isOpen
     ? createPortal(
         <div className={styles.overlay} onClick={handleOverlayClose}>
-          <div className={styles.content}>{children}</div>
+          <div role="dialog" className={styles.content}>
+            {children}
+          </div>
         </div>,
-        document.getElementById('modal-portal') as Element
+        document.getElementById('modal') as Element
       )
     : null;
 };
