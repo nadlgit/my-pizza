@@ -1,0 +1,19 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: hsla(0, 100%, 0%, 0.6);
+}
+
+.content {
+  /* min-width: min(100vw, 20rem);
+  min-height: min(100vh, 15rem);
+  margin: auto; */
+
+  /* position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}

@@ -1,6 +1,9 @@
 import styles from './contact.module.css';
 import { STORE_CONTACT } from 'data/store-info';
 import { Button } from 'shared/components/ui/button';
+import { Modal } from 'shared/components/modal';
+import { ContactForm } from './contact-form';
+import { useState } from 'react';
 
 import type { order } from 'data/model';
 
@@ -11,6 +14,14 @@ type ContactProps = Pick<order, 'deliveryMode' | 'contact'> & {
 export type handleContactChange = ContactProps['onChange'];
 
 export const Contact = ({ deliveryMode, contact, onChange }: ContactProps) => {
+  const [showForm, setShowForm] = useState(false);
+  const openForm = () => {
+    setShowForm(true);
+  };
+  const closeForm = () => {
+    setShowForm(false);
+  };
+
   return (
     <section className={styles.contact}>
       {deliveryMode === 'pick-up' ? (
@@ -34,9 +45,12 @@ export const Contact = ({ deliveryMode, contact, onChange }: ContactProps) => {
           ) : (
             <p className={styles.nocontact}>Veuillez saisir vos coordonnées</p>
           )}
-          <Button className={styles.button} onClick={() => {}}>
+          <Button className={styles.button} onClick={openForm}>
             Modifier
           </Button>
+          <Modal isOpen={showForm} close={closeForm}>
+            <ContactForm contact={contact} onChange={onChange} onClose={closeForm} />
+          </Modal>
         </>
       )}
     </section>
