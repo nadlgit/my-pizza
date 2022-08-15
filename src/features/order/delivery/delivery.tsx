@@ -5,29 +5,30 @@ import { useState } from 'react';
 
 import type { order } from 'data/model';
 import type { handleDeliveryModeChange } from './choice';
+import type { handleContactChange } from './contact';
 
 type DeliveryProps = {
   defaultSelection: order['deliveryMode'];
-  onChange: handleDeliveryModeChange;
   contact: order['contact'] | undefined;
-  openContactForm: () => void;
+  onModeChange: handleDeliveryModeChange;
+  onContactChange: handleContactChange;
 };
 
 export const Delivery = ({
   defaultSelection,
-  onChange,
   contact,
-  openContactForm,
+  onModeChange,
+  onContactChange,
 }: DeliveryProps) => {
   const [selection, setSelection] = useState(defaultSelection);
-  const handleChange: handleDeliveryModeChange = (current) => {
+  const handleModeChange: handleDeliveryModeChange = (current) => {
     setSelection(current);
-    onChange(current);
+    onModeChange(current);
   };
   return (
     <div className={styles.delivery}>
-      <Choice defaultSelection={defaultSelection} onChange={handleChange} />
-      <Contact deliveryMode={selection} contact={contact} openContactForm={openContactForm} />
+      <Choice defaultSelection={defaultSelection} onChange={handleModeChange} />
+      <Contact deliveryMode={selection} contact={contact} onChange={onContactChange} />
     </div>
   );
 };

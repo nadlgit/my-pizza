@@ -5,12 +5,13 @@ import { useState } from 'react';
 
 import type { order } from 'data/model';
 import type { handleDeliveryModeChange } from './delivery';
+import type { handleContactChange } from './delivery';
 import type { FormEventHandler } from 'react';
 
 type OrderValidationProps = {
   order: order;
   setDeliveryMode: (value: order['deliveryMode']) => void;
-  openContactForm: () => void;
+  setContact: (value: order['contact']) => void;
   handleCancel: () => void;
   handleBack: () => void;
   handleFormSubmit: FormEventHandler<HTMLFormElement>;
@@ -20,7 +21,7 @@ type OrderValidationProps = {
 export const OrderValidation = ({
   order,
   setDeliveryMode,
-  openContactForm,
+  setContact,
   handleCancel,
   handleBack,
   handleFormSubmit,
@@ -36,13 +37,18 @@ export const OrderValidation = ({
     setDeliveryMode(current);
   };
 
+  const handleContactChange: handleContactChange = (current) => {
+    setSubmitDisabled(shoudDisableSubmit({ ...order, contact: current }));
+    setContact(current);
+  };
+
   return (
     <form onSubmit={handleFormSubmit} className={className}>
       <Delivery
         defaultSelection={order.deliveryMode}
         contact={order?.contact}
-        onChange={handleDeliverySelection}
-        openContactForm={openContactForm}
+        onModeChange={handleDeliverySelection}
+        onContactChange={handleContactChange}
       />
       <Summary
         amount={order.amount}

@@ -83,7 +83,7 @@ export const Order = () => {
         <OrderValidation
           order={order}
           setDeliveryMode={setDeliveryMode}
-          openContactForm={tmpOpenCOntactForm}
+          setContact={setContact}
           handleCancel={handleCancel}
           handleBack={handleBack}
           handleFormSubmit={handleFormSubmit}
