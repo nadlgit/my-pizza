@@ -1,15 +1,16 @@
-.overlay {
+.backdrop {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  display: grid;
+  place-items: center;
   background-color: var(--color-transparent-dark-gray);
 }
 
 .content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  max-width: max(60vw, 30rem);
+  max-height: 100vh;
+  overflow: auto;
 }
