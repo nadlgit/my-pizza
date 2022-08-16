@@ -1,0 +1,29 @@
+.container {
+  background-image: var(--color-yellow-orange-gradient);
+  background-color: var(--color-light-yellow);
+}
+
+.btns {
+  --button-min-width: max(8.5rem, 30vmin);
+  display: flex;
+  justify-content: center;
+  gap: 0.35em;
+  margin-block: 1em;
+  font-size: max(1.25rem, 4vmin);
+  color: var(--color-white);
+}
+
+.cancelbtn {
+  min-width: var(--button-min-width);
+  background-color: var(--color-red);
+}
+
+.submitbtn {
+  min-width: var(--button-min-width);
+  background-color: var(--color-green);
+}
+
+.disabledbtn {
+  min-width: var(--button-min-width);
+  background-color: var(--color-dark-gray);
+}
