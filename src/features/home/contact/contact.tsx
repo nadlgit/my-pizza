@@ -20,7 +20,10 @@ export const Contact = () => {
         <p>{STORE_CONTACT.address.city}</p>
         <p>{`Tel: ${STORE_CONTACT.phoneNumber}`}</p>
       </div>
-      <Map />
+      <Map
+        latitude={STORE_CONTACT.location.latitude}
+        longitude={STORE_CONTACT.location.longitude}
+      />
     </div>
   );
 };

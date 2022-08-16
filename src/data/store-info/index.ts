@@ -4,4 +4,8 @@ export const STORE_CONTACT = Object.freeze({
     line1: '29 rue de la Pâte',
     city: '99999 BELLA CITA',
   }),
+  location: Object.freeze({
+    latitude: 37.40599,
+    longitude: -122.078514,
+  }),
 });
