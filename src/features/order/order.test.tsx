@@ -14,7 +14,9 @@ describe('Order component', () => {
   const backButtonLabel = 'Retour';
   const pickUpLabel = 'Retrait sur place';
   const deliveryLabel = 'Livraison';
-  const modifyContactButtonLabel = 'Modifier';
+  // const enterContactButtonLabel = 'Saisir';
+  // const modifyContactButtonLabel = 'Modifier';
+  const modifyContactButtonLabel = 'Saisir';
 
   const fakeContact = {
     name: 'Jane Summers',

@@ -29,6 +29,7 @@
 }
 
 .button {
+  min-width: 10ch;
   font-size: var(--contact-bigger-font-size);
   color: var(--color-dark-gray);
   background-color: var(--color-yellow);
