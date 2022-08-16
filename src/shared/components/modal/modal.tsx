@@ -1,6 +1,5 @@
 import styles from './Modal.module.css';
 import { createPortal } from 'react-dom';
-import { useMounted } from 'shared/utils/use-mounted';
 import FocusTrap from 'focus-trap-react';
 import { useEffect, useState } from 'react';
 
@@ -9,14 +8,17 @@ import type { ReactNode } from 'react';
 type ModalProps = { isOpen: boolean; close: () => void; children: ReactNode };
 
 export const Modal = ({ isOpen, close, children }: ModalProps) => {
-  const isMounted = useMounted();
+  const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+    setShowModal(isOpen);
+  }, [isOpen]);
 
   const [trapActive, setTrapActive] = useState(false);
   useEffect(() => {
-    setTrapActive(isMounted && isOpen);
-  }, [isMounted, isOpen]);
+    setTrapActive(showModal);
+  }, [showModal]);
 
-  return isMounted && isOpen
+  return showModal
     ? createPortal(
         <div className={styles.backdrop}>
           <FocusTrap
