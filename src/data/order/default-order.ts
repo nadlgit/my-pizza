@@ -1,9 +1,9 @@
 import { PIZZA_BASES } from 'data/bases';
 import { updateOrderAmount } from './helpers';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
-export const DEFAULT_ORDER: order = Object.freeze(
+export const DEFAULT_ORDER: Order = Object.freeze(
   updateOrderAmount({
     id: 0,
     base: PIZZA_BASES[0],

@@ -2,7 +2,7 @@ import styles from './ingredient.module.css';
 import { Image } from 'shared/components/ui/image';
 import { formatPrice } from 'shared/utils/helpers';
 
-import type { ingredient } from 'data/model';
+import type { Ingredient as TIngredient } from 'data/model';
 import type { ChangeEventHandler } from 'react';
 
 type IngredientProps = {
@@ -10,7 +10,7 @@ type IngredientProps = {
   inputName: string;
   isInitiallySelected: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
-} & Pick<ingredient, 'id' | 'title' | 'imgUrl' | 'price'>;
+} & Pick<TIngredient, 'id' | 'title' | 'imgUrl' | 'price'>;
 
 export const Ingredient = ({
   inputType,

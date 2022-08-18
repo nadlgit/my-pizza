@@ -2,21 +2,21 @@ import styles from './ingredient-group.module.css';
 import { Ingredient } from './ingredient';
 import { useState } from 'react';
 
-import type { ingredient } from 'data/model';
+import type { Ingredient as TIngredient } from 'data/model';
 import type { ChangeEventHandler } from 'react';
 
-type ingredientSelection = ingredient['id'][];
+type IngredientSelection = TIngredient['id'][];
 
 type IngredientGroupProps = {
   type: 'radio' | 'checkbox';
   name: string;
   title: string;
-  list: Readonly<Pick<ingredient, 'id' | 'title' | 'imgUrl' | 'price'>[]>;
-  defaultSelection: ingredientSelection;
-  onChange: (current: ingredientSelection) => void;
+  list: Readonly<Pick<TIngredient, 'id' | 'title' | 'imgUrl' | 'price'>[]>;
+  defaultSelection: IngredientSelection;
+  onChange: (current: IngredientSelection) => void;
 };
 
-export type handleIngredientGroupChange = IngredientGroupProps['onChange'];
+export type HandleIngredientGroupChange = IngredientGroupProps['onChange'];
 
 export const IngredientGroup = ({
   type,
@@ -30,7 +30,7 @@ export const IngredientGroup = ({
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, checked } = e.target;
-    let newSelection: ingredientSelection | undefined;
+    let newSelection: IngredientSelection | undefined;
     if (type === 'radio') {
       newSelection = [value];
     }

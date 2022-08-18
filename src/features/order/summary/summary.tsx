@@ -2,9 +2,9 @@ import styles from './summary.module.css';
 import { DELIVERY_EXTRA_CHARGE } from 'data/order';
 import { formatPrice } from 'shared/utils/helpers';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
-type SummaryProps = Pick<order, 'amount' | 'base' | 'ingredients' | 'deliveryMode'>;
+type SummaryProps = Pick<Order, 'amount' | 'base' | 'ingredients' | 'deliveryMode'>;
 
 export const Summary = ({ amount, base, ingredients, deliveryMode }: SummaryProps) => {
   return (

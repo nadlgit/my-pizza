@@ -1,10 +1,10 @@
 import { updateOrderAmount, newOrderId } from './helpers';
 import { DELIVERY_EXTRA_CHARGE } from './constants';
 
-import type { order, ingredient } from 'data/model';
+import type { Order, Ingredient } from 'data/model';
 
 describe('updateOrderAmount', () => {
-  const fakePizzaBase: ingredient = {
+  const fakePizzaBase: Ingredient = {
     id: 'base-id',
     title: 'Base',
     price: 8,
@@ -12,7 +12,7 @@ describe('updateOrderAmount', () => {
     previewUrl: 'preview-pizza-base.png',
   };
 
-  const fakePizzaIngredients: ingredient[] = [
+  const fakePizzaIngredients: Ingredient[] = [
     {
       id: 'ingr-id1',
       title: 'Ingredient1',
@@ -30,7 +30,7 @@ describe('updateOrderAmount', () => {
   ];
 
   it('should return new object with calculated amount', () => {
-    const value: order = {
+    const value: Order = {
       id: 1234,
       base: { ...fakePizzaBase },
       ingredients: [...fakePizzaIngredients],
@@ -38,7 +38,7 @@ describe('updateOrderAmount', () => {
       amountExtraPart: 0,
       deliveryMode: 'pick-up',
     };
-    const expected: order = {
+    const expected: Order = {
       ...value,
       amount:
         fakePizzaBase.price + fakePizzaIngredients.reduce((price, item) => price + item.price, 0),
@@ -52,7 +52,7 @@ describe('updateOrderAmount', () => {
   });
 
   it('should apply extra charge for delivery', () => {
-    const value: order = {
+    const value: Order = {
       id: 98,
       base: { ...fakePizzaBase },
       ingredients: [...fakePizzaIngredients],
@@ -60,7 +60,7 @@ describe('updateOrderAmount', () => {
       amountExtraPart: 0,
       deliveryMode: 'delivery',
     };
-    const expected: order = {
+    const expected: Order = {
       ...value,
       amount:
         fakePizzaBase.price +

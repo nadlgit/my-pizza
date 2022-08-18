@@ -1,9 +1,9 @@
-import { ingredient } from './ingredient';
+import { Ingredient } from './ingredient';
 
-export type order = {
+export type Order = {
   id: number;
-  base: ingredient;
-  ingredients: ingredient[];
+  base: Ingredient;
+  ingredients: Ingredient[];
   amount: number;
   amountExtraPart: number;
   deliveryMode: 'pick-up' | 'delivery';

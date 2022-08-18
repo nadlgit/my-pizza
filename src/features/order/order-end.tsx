@@ -1,10 +1,10 @@
 import { Actions } from './actions';
 import { EndSummary } from './end-summary';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
 type OrderEndProps = {
-  order: order;
+  order: Order;
   className: string;
 };
 

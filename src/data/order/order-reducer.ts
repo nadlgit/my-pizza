@@ -1,24 +1,24 @@
 import { DEFAULT_ORDER } from './default-order';
 import { updateOrderAmount, newOrderId } from './helpers';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
-type orderReducerAction =
+type OrderReducerAction =
   | {
       type: 'SET_BASE';
-      payload: Pick<order, 'base'>;
+      payload: Pick<Order, 'base'>;
     }
   | {
       type: 'SET_INGREDIENTS';
-      payload: Pick<order, 'ingredients'>;
+      payload: Pick<Order, 'ingredients'>;
     }
   | {
       type: 'SET_DELIVERY';
-      payload: Pick<order, 'deliveryMode'>;
+      payload: Pick<Order, 'deliveryMode'>;
     }
   | {
       type: 'SET_CONTACT';
-      payload: Pick<order, 'contact'>;
+      payload: Pick<Order, 'contact'>;
     }
   | {
       type: 'COMPLETE';
@@ -27,7 +27,7 @@ type orderReducerAction =
       type: 'CANCEL';
     };
 
-export const orderReducer = (state: order, action: orderReducerAction) => {
+export const orderReducer = (state: Order, action: OrderReducerAction) => {
   switch (action.type) {
     case 'SET_BASE':
       return updateOrderAmount({ ...state, base: action.payload.base });

@@ -1,4 +1,4 @@
 export { Delivery } from './delivery';
 
-export type { handleDeliveryModeChange } from './choice';
-export type { handleContactChange } from './contact';
+export type { HandleDeliveryModeChange } from './choice';
+export type { HandleContactChange } from './contact';

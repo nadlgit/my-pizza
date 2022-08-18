@@ -2,21 +2,21 @@ import { useReducer } from 'react';
 import { orderReducer } from './order-reducer';
 import { DEFAULT_ORDER } from './default-order';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
 export const useOrder = () => {
   const [order, dispatchOrder] = useReducer(orderReducer, DEFAULT_ORDER);
 
-  const setBase = (value: order['base']) => {
+  const setBase = (value: Order['base']) => {
     dispatchOrder({ type: 'SET_BASE', payload: { base: value } });
   };
-  const setIngredients = (value: order['ingredients']) => {
+  const setIngredients = (value: Order['ingredients']) => {
     dispatchOrder({ type: 'SET_INGREDIENTS', payload: { ingredients: value } });
   };
-  const setDeliveryMode = (value: order['deliveryMode']) => {
+  const setDeliveryMode = (value: Order['deliveryMode']) => {
     dispatchOrder({ type: 'SET_DELIVERY', payload: { deliveryMode: value } });
   };
-  const setContact = (value: order['contact']) => {
+  const setContact = (value: Order['contact']) => {
     dispatchOrder({ type: 'SET_CONTACT', payload: { contact: value } });
   };
   const completeOrder = () => {

@@ -5,13 +5,13 @@ import { Modal } from 'shared/components/modal';
 import { ContactForm } from './contact-form';
 import { useState } from 'react';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
-type ContactProps = Pick<order, 'deliveryMode' | 'contact'> & {
-  onChange: (current: order['contact']) => void;
+type ContactProps = Pick<Order, 'deliveryMode' | 'contact'> & {
+  onChange: (current: Order['contact']) => void;
 };
 
-export type handleContactChange = ContactProps['onChange'];
+export type HandleContactChange = ContactProps['onChange'];
 
 export const Contact = ({ deliveryMode, contact, onChange }: ContactProps) => {
   const [showForm, setShowForm] = useState(false);

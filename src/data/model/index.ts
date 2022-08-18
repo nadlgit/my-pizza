@@ -1,2 +1,2 @@
-export type { ingredient } from './ingredient';
-export type { order } from './order';
+export type { Ingredient } from './ingredient';
+export type { Order } from './order';

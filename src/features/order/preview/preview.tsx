@@ -3,9 +3,9 @@ import { Image } from 'shared/components/ui/image';
 import PreviewPizza from './preview-pizza.png';
 import { formatPrice } from 'shared/utils/helpers';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
-type PreviewProps = Pick<order, 'amount' | 'base' | 'ingredients'>;
+type PreviewProps = Pick<Order, 'amount' | 'base' | 'ingredients'>;
 
 export const Preview = ({ amount, base, ingredients }: PreviewProps) => {
   const previewItems = [

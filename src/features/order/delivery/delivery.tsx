@@ -3,15 +3,15 @@ import { Choice } from './choice';
 import { Contact } from './contact';
 import { useState } from 'react';
 
-import type { order } from 'data/model';
-import type { handleDeliveryModeChange } from './choice';
-import type { handleContactChange } from './contact';
+import type { Order } from 'data/model';
+import type { HandleDeliveryModeChange } from './choice';
+import type { HandleContactChange } from './contact';
 
 type DeliveryProps = {
-  defaultSelection: order['deliveryMode'];
-  contact: order['contact'] | undefined;
-  onModeChange: handleDeliveryModeChange;
-  onContactChange: handleContactChange;
+  defaultSelection: Order['deliveryMode'];
+  contact: Order['contact'] | undefined;
+  onModeChange: HandleDeliveryModeChange;
+  onContactChange: HandleContactChange;
 };
 
 export const Delivery = ({
@@ -21,7 +21,7 @@ export const Delivery = ({
   onContactChange,
 }: DeliveryProps) => {
   const [selection, setSelection] = useState(defaultSelection);
-  const handleModeChange: handleDeliveryModeChange = (current) => {
+  const handleModeChange: HandleDeliveryModeChange = (current) => {
     setSelection(current);
     onModeChange(current);
   };

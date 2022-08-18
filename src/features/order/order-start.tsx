@@ -4,14 +4,14 @@ import { Actions } from './actions';
 import { Preview } from './preview';
 import { IngredientGroup } from './ingredient-group';
 
-import type { order, ingredient } from 'data/model';
-import type { handleIngredientGroupChange } from './ingredient-group';
+import type { Order, Ingredient } from 'data/model';
+import type { HandleIngredientGroupChange } from './ingredient-group';
 import type { FormEventHandler } from 'react';
 
 type OrderStartProps = {
-  order: order;
-  setBase: (value: order['base']) => void;
-  setIngredients: (value: order['ingredients']) => void;
+  order: Order;
+  setBase: (value: Order['base']) => void;
+  setIngredients: (value: Order['ingredients']) => void;
   handleCancel: () => void;
   handleFormSubmit: FormEventHandler<HTMLFormElement>;
   className: string;
@@ -25,14 +25,14 @@ export const OrderStart = ({
   handleFormSubmit,
   className,
 }: OrderStartProps) => {
-  const handleBaseSelection: handleIngredientGroupChange = (current) => {
+  const handleBaseSelection: HandleIngredientGroupChange = (current) => {
     if (current.length === 1) {
-      setBase(PIZZA_BASES.find((item) => item.id === current[0]) as ingredient);
+      setBase(PIZZA_BASES.find((item) => item.id === current[0]) as Ingredient);
     }
   };
-  const handleIngrSelection: handleIngredientGroupChange = (current) => {
+  const handleIngrSelection: HandleIngredientGroupChange = (current) => {
     const selection = current.map(
-      (id) => PIZZA_INGREDIENTS.find((item) => item.id === id) as ingredient
+      (id) => PIZZA_INGREDIENTS.find((item) => item.id === id) as Ingredient
     );
     setIngredients(selection);
   };

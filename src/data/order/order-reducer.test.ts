@@ -2,10 +2,10 @@ import { orderReducer } from './order-reducer';
 import { DEFAULT_ORDER } from './default-order';
 import { updateOrderAmount } from './helpers';
 
-import type { order, ingredient } from 'data/model';
+import type { Order, Ingredient } from 'data/model';
 
 describe('orderReducer', () => {
-  const fakePizzaBase: ingredient = {
+  const fakePizzaBase: Ingredient = {
     id: 'base-id',
     title: 'Base',
     price: 8,
@@ -13,7 +13,7 @@ describe('orderReducer', () => {
     previewUrl: 'preview-pizza-base.png',
   };
 
-  const fakePizzaIngredients: ingredient[] = [
+  const fakePizzaIngredients: Ingredient[] = [
     {
       id: 'ingr-id1',
       title: 'Ingredient1',
@@ -31,8 +31,8 @@ describe('orderReducer', () => {
   ];
 
   it('SET_BASE action should return new object with base and amount fields updated', () => {
-    const value: order = { ...DEFAULT_ORDER };
-    const expected: order = updateOrderAmount({
+    const value: Order = { ...DEFAULT_ORDER };
+    const expected: Order = updateOrderAmount({
       ...value,
       base: fakePizzaBase,
     });
@@ -44,8 +44,8 @@ describe('orderReducer', () => {
   });
 
   it('SET_INGREDIENTS action should return new object with ingredients and amount fields updated', () => {
-    const value: order = { ...DEFAULT_ORDER };
-    const expected: order = updateOrderAmount({
+    const value: Order = { ...DEFAULT_ORDER };
+    const expected: Order = updateOrderAmount({
       ...value,
       ingredients: fakePizzaIngredients,
     });
@@ -60,8 +60,8 @@ describe('orderReducer', () => {
   });
 
   it('SET_DELIVERY action should return new object with deliveryMode and amount fields updated', () => {
-    const value: order = { ...DEFAULT_ORDER };
-    const expected: order = updateOrderAmount({
+    const value: Order = { ...DEFAULT_ORDER };
+    const expected: Order = updateOrderAmount({
       ...value,
       deliveryMode: 'delivery',
     });
@@ -76,8 +76,8 @@ describe('orderReducer', () => {
   });
 
   it('SET_CONTACT action should return new object with contact and amount fields updated', () => {
-    const value: order = { ...DEFAULT_ORDER };
-    const expected: order = updateOrderAmount({
+    const value: Order = { ...DEFAULT_ORDER };
+    const expected: Order = updateOrderAmount({
       ...value,
       contact: {
         name: 'John Doe',
@@ -96,7 +96,7 @@ describe('orderReducer', () => {
   });
 
   it('COMPLETE action should return new object with id field updated', () => {
-    const value: order = { ...DEFAULT_ORDER };
+    const value: Order = { ...DEFAULT_ORDER };
 
     const res = orderReducer(value, {
       type: 'COMPLETE',
@@ -107,7 +107,7 @@ describe('orderReducer', () => {
   });
 
   it('CANCEL action should return new object with default order fields', () => {
-    const value: order = {
+    const value: Order = {
       id: 98,
       base: { ...fakePizzaBase },
       ingredients: [...fakePizzaIngredients],
@@ -115,7 +115,7 @@ describe('orderReducer', () => {
       amountExtraPart: 0,
       deliveryMode: 'delivery',
     };
-    const expected: order = { ...DEFAULT_ORDER };
+    const expected: Order = { ...DEFAULT_ORDER };
     expect(value).not.toEqual(expected);
 
     const res = orderReducer(value, {

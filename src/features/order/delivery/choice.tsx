@@ -2,21 +2,21 @@ import styles from './choice.module.css';
 import { DELIVERY_EXTRA_CHARGE } from 'data/order';
 import { formatPrice } from 'shared/utils/helpers';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 import type { ChangeEventHandler, ReactNode } from 'react';
 
-type deliverySelection = order['deliveryMode'];
+type DeliverySelection = Order['deliveryMode'];
 
 type ChoiceProps = {
-  defaultSelection: deliverySelection;
-  onChange: (current: deliverySelection) => void;
+  defaultSelection: DeliverySelection;
+  onChange: (current: DeliverySelection) => void;
 };
 
-export type handleDeliveryModeChange = ChoiceProps['onChange'];
+export type HandleDeliveryModeChange = ChoiceProps['onChange'];
 
 export const Choice = ({ defaultSelection, onChange }: ChoiceProps) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const newSelection = e.target.value as deliverySelection;
+    const newSelection = e.target.value as DeliverySelection;
     onChange(newSelection);
   };
 
@@ -37,8 +37,8 @@ export const Choice = ({ defaultSelection, onChange }: ChoiceProps) => {
 };
 
 type ChoiceItemProps = {
-  value: deliverySelection;
-  defaultSelection: deliverySelection;
+  value: DeliverySelection;
+  defaultSelection: DeliverySelection;
   onChange: ChangeEventHandler<HTMLInputElement>;
   children: ReactNode;
 };

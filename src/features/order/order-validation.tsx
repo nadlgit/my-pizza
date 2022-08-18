@@ -3,15 +3,15 @@ import { Delivery } from './delivery';
 import { Summary } from './summary';
 import { useState } from 'react';
 
-import type { order } from 'data/model';
-import type { handleDeliveryModeChange } from './delivery';
-import type { handleContactChange } from './delivery';
+import type { Order } from 'data/model';
+import type { HandleDeliveryModeChange } from './delivery';
+import type { HandleContactChange } from './delivery';
 import type { FormEventHandler } from 'react';
 
 type OrderValidationProps = {
-  order: order;
-  setDeliveryMode: (value: order['deliveryMode']) => void;
-  setContact: (value: order['contact']) => void;
+  order: Order;
+  setDeliveryMode: (value: Order['deliveryMode']) => void;
+  setContact: (value: Order['contact']) => void;
   handleCancel: () => void;
   handleBack: () => void;
   handleFormSubmit: FormEventHandler<HTMLFormElement>;
@@ -27,17 +27,17 @@ export const OrderValidation = ({
   handleFormSubmit,
   className,
 }: OrderValidationProps) => {
-  const shoudDisableSubmit = (currentOrder: order) =>
+  const shoudDisableSubmit = (currentOrder: Order) =>
     currentOrder.deliveryMode !== 'pick-up' && !currentOrder?.contact;
 
   const [submitDisabled, setSubmitDisabled] = useState(shoudDisableSubmit(order));
 
-  const handleDeliverySelection: handleDeliveryModeChange = (current) => {
+  const handleDeliverySelection: HandleDeliveryModeChange = (current) => {
     setSubmitDisabled(shoudDisableSubmit({ ...order, deliveryMode: current }));
     setDeliveryMode(current);
   };
 
-  const handleContactChange: handleContactChange = (current) => {
+  const handleContactChange: HandleContactChange = (current) => {
     setSubmitDisabled(shoudDisableSubmit({ ...order, contact: current }));
     setContact(current);
   };

@@ -8,10 +8,10 @@ import { useEffect, useState } from 'react';
 
 import type { FormEventHandler } from 'react';
 
-type orderStep = 'start' | 'validation' | 'end';
-const orderStepList = ['start', 'validation', 'end'] as orderStep[];
+type OrderStep = 'start' | 'validation' | 'end';
+const orderStepList = ['start', 'validation', 'end'] as OrderStep[];
 const firstStep = orderStepList[0];
-const prevStep = (step: orderStep) => {
+const prevStep = (step: OrderStep) => {
   const stepIndex = orderStepList.findIndex((item) => item === step);
   if (stepIndex > 0 && stepIndex <= orderStepList.length) {
     return orderStepList[stepIndex - 1];
@@ -19,7 +19,7 @@ const prevStep = (step: orderStep) => {
     return step;
   }
 };
-const nextStep = (step: orderStep) => {
+const nextStep = (step: OrderStep) => {
   const stepIndex = orderStepList.findIndex((item) => item === step);
   if (stepIndex >= 0 && stepIndex < orderStepList.length) {
     return orderStepList[stepIndex + 1];
@@ -31,7 +31,7 @@ const nextStep = (step: orderStep) => {
 const tmpOpenCOntactForm = () => {};
 
 export const Order = () => {
-  const [step, setStep] = useState<orderStep>(firstStep);
+  const [step, setStep] = useState<OrderStep>(firstStep);
   const router = useRouter();
   const {
     order,

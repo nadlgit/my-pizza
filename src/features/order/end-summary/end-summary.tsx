@@ -2,9 +2,9 @@ import styles from './end-summary.module.css';
 import { STORE_CONTACT } from 'data/store-info';
 import { formatPrice } from 'shared/utils/helpers';
 
-import type { order } from 'data/model';
+import type { Order } from 'data/model';
 
-type EndSummaryProps = Pick<order, 'id' | 'deliveryMode' | 'contact' | 'amount'>;
+type EndSummaryProps = Pick<Order, 'id' | 'deliveryMode' | 'contact' | 'amount'>;
 
 export const EndSummary = ({ id, deliveryMode, contact, amount }: EndSummaryProps) => {
   return (
