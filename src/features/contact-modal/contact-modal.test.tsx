@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
-import { ContactForm } from './contact-form';
+import { ContactModal } from './contact-modal';
 
-describe.skip('ContactForm component', () => {
+describe.skip('ContactModal component', () => {
   it.skip('todo', () => {});
 });

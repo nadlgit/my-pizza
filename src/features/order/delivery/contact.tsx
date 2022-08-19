@@ -1,8 +1,7 @@
 import styles from './contact.module.css';
 import { STORE_CONTACT } from 'data/store-info';
 import { Button } from 'shared/components/ui/button';
-import { Modal } from 'shared/components/modal';
-import { ContactForm } from 'features/contact-form';
+import { ContactModal } from 'features/contact-modal';
 import { useState } from 'react';
 
 import type { Order } from 'data/model';
@@ -50,9 +49,12 @@ export const Contact = ({ deliveryMode, contact, onChange }: ContactProps) => {
             {contact ? 'Modifier' : 'Saisir'}
           </Button>
 
-          <Modal isOpen={showForm} close={closeForm}>
-            <ContactForm contact={contact} onChange={onChange} onClose={closeForm} />
-          </Modal>
+          <ContactModal
+            isOpen={showForm}
+            contact={contact}
+            onChange={onChange}
+            onClose={closeForm}
+          />
         </>
       )}
     </section>
