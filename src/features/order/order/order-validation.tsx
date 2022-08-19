@@ -1,11 +1,10 @@
-import { Actions } from './actions';
-import { Delivery } from './delivery';
-import { Summary } from './summary';
+import { Actions } from '../actions';
+import { Delivery } from '../delivery';
+import { Summary } from '../summary';
 import { useState } from 'react';
 
 import type { Order } from 'data/model';
-import type { HandleDeliveryModeChange } from './delivery';
-import type { HandleContactChange } from './delivery';
+import type { HandleDeliveryModeChange, HandleContactChange } from '../delivery';
 import type { FormEventHandler } from 'react';
 
 type OrderValidationProps = {

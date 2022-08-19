@@ -1,5 +1,5 @@
-import { Actions } from './actions';
-import { EndSummary } from './end-summary';
+import { Actions } from '../actions';
+import { EndSummary } from '../end-summary';
 
 import type { Order } from 'data/model';
 

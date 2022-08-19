@@ -1,11 +1,11 @@
 import { PIZZA_BASES } from 'data/bases';
 import { PIZZA_INGREDIENTS } from 'data/ingredients';
-import { Actions } from './actions';
-import { Preview } from './preview';
-import { IngredientGroup } from './ingredient-group';
+import { Actions } from '../actions';
+import { Preview } from '../preview';
+import { IngredientGroup } from '../ingredient-group';
 
 import type { Order, Ingredient } from 'data/model';
-import type { HandleIngredientGroupChange } from './ingredient-group';
+import type { HandleIngredientGroupChange } from '../ingredient-group';
 import type { FormEventHandler } from 'react';
 
 type OrderStartProps = {
