@@ -1,15 +1,31 @@
 .container {
+  --contact-fs-bigger: max(1.25rem, 4vmin);
+  display: grid;
+  padding: 1em;
+  font-size: max(1rem, 3vmin);
   background-image: var(--color-yellow-orange-gradient);
   background-color: var(--color-light-yellow);
+  border-radius: 0.625rem;
+}
+
+.container h2 {
+  margin-bottom: 1em;
+  text-align: center;
+  font-size: var(--contact-fs-bigger);
+  font-weight: var(--font-weight-bold);
+}
+
+.container label {
+  font-style: italic;
 }
 
 .btns {
   --button-min-width: max(8.5rem, 30vmin);
+  margin-top: 1em;
   display: flex;
   justify-content: center;
   gap: 0.35em;
-  margin-block: 1em;
-  font-size: max(1.25rem, 4vmin);
+  font-size: var(--contact-fs-bigger);
   color: var(--color-white);
 }
 
