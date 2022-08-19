@@ -14,19 +14,20 @@ export const Actions = ({ cancel, submit, back, home }: ActionsProps) => {
   return (
     <div className={styles.actions}>
       {back && (
-        <Button className={styles.backbtn} onClick={() => back?.onClick()}>
+        <Button color="orange" onClick={() => back?.onClick()}>
           <Image src={BackImg} alt={back.label} className={styles.backimg} />
           <span className={styles.backtxt}>{back.label}</span>
         </Button>
       )}
       {cancel && (
-        <Button className={styles.cancelbtn} onClick={cancel.onClick}>
+        <Button color="red" className={styles.widebtn} onClick={cancel.onClick}>
           {cancel.label}
         </Button>
       )}
       {submit && (
         <Button
-          className={submit?.disabled ? styles.disabledbtn : styles.submitbtn}
+          color="green"
+          className={styles.widebtn}
           type="submit"
           disabled={submit?.disabled ?? false}
         >
@@ -34,7 +35,7 @@ export const Actions = ({ cancel, submit, back, home }: ActionsProps) => {
         </Button>
       )}
       {home && (
-        <LinkButton url="/" className={styles.homebtn}>
+        <LinkButton color="orange" url="/">
           {home.label}
         </LinkButton>
       )}

@@ -45,9 +45,11 @@ export const Contact = ({ deliveryMode, contact, onChange }: ContactProps) => {
           ) : (
             <p className={styles.nocontact}>Veuillez saisir vos coordonnées</p>
           )}
-          <Button className={styles.button} onClick={openForm}>
+
+          <Button color="yellow" className={styles.button} onClick={openForm}>
             {contact ? 'Modifier' : 'Saisir'}
           </Button>
+
           <Modal isOpen={showForm} close={closeForm}>
             <ContactForm contact={contact} onChange={onChange} onClose={closeForm} />
           </Modal>

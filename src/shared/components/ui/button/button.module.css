@@ -18,3 +18,28 @@
 .link {
   text-decoration: none;
 }
+
+.button:disabled {
+  color: var(--color-white);
+  background-color: var(--color-dark-gray);
+}
+
+.orange {
+  color: var(--color-white);
+  background-color: var(--color-orange);
+}
+
+.red {
+  color: var(--color-white);
+  background-color: var(--color-red);
+}
+
+.green {
+  color: var(--color-white);
+  background-color: var(--color-green);
+}
+
+.yellow {
+  color: var(--color-dark-gray);
+  background-color: var(--color-yellow);
+}

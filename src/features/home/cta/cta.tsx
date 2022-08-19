@@ -8,7 +8,7 @@ export const CTA = () => {
         Avec My pizza, assemblez les ingrédients selon vos envies pour obtenir une pizza unique qui
         vous ressemble !
       </p>
-      <LinkButton url="/order" className={styles.button}>
+      <LinkButton color="orange" url="/order" className={styles.button}>
         Commander
       </LinkButton>
     </div>

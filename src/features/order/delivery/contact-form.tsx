@@ -92,10 +92,10 @@ export const ContactForm = ({ contact, onChange, onClose }: ContactFormProps) =>
       />
 
       <div className={styles.btns}>
-        <Button className={styles.cancelbtn} onClick={() => onClose()}>
+        <Button color="red" onClick={() => onClose()}>
           Annuler
         </Button>
-        <Button className={styles.submitbtn} type="submit">
+        <Button color="green" type="submit">
           Valider
         </Button>
       </div>

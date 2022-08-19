@@ -23,8 +23,6 @@
 
 .button {
   padding-inline: 1.5em !important;
-  color: var(--color-white);
-  background-color: var(--color-orange);
   font-size: var(--cta-font-size);
 }
 
