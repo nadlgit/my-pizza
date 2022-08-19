@@ -2,7 +2,7 @@ import styles from './contact.module.css';
 import { STORE_CONTACT } from 'data/store-info';
 import { Button } from 'shared/components/ui/button';
 import { Modal } from 'shared/components/modal';
-import { ContactForm } from './contact-form';
+import { ContactForm } from 'features/contact-form';
 import { useState } from 'react';
 
 import type { Order } from 'data/model';
