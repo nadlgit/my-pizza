@@ -6,17 +6,19 @@ import { Order } from './order';
 import { PIZZA_BASES } from 'data/bases';
 import { PIZZA_INGREDIENTS } from 'data/ingredients';
 import { STORE_CONTACT } from 'data/store-info';
+import { ContactModal } from 'features/contact-modal';
 
-describe('Order component', () => {
+jest.mock('features/contact-modal');
+
+describe.skip('Order component', () => {
   const cancelButtonLabel = 'Annuler';
   const continueButtonLabel = 'Continuer';
   const submitButtonLabel = 'Valider';
   const backButtonLabel = 'Retour';
   const pickUpLabel = 'Retrait sur place';
   const deliveryLabel = 'Livraison';
-  // const enterContactButtonLabel = 'Saisir';
-  // const modifyContactButtonLabel = 'Modifier';
-  const modifyContactButtonLabel = 'Saisir';
+  const enterContactButtonLabel = 'Saisir';
+  const modifyContactButtonLabel = 'Modifier';
 
   const fakeContact = {
     name: 'Jane Summers',
@@ -117,12 +119,12 @@ describe('Order component', () => {
         expect(
           screen.getByRole('heading', { name: new RegExp('Nos coordonnées', 'i') })
         ).toBeVisible();
-        expect(screen.getByText(new RegExp(STORE_CONTACT.address.line1, 'i'))).toBeVisible();
-        expect(screen.getByText(new RegExp(STORE_CONTACT.address.city, 'i'))).toBeVisible();
-        expect(screen.getByText(new RegExp(STORE_CONTACT.phoneNumber, 'i'))).toBeVisible();
+        expect(screen.getByText(new RegExp(STORE_CONTACT.address.line1))).toBeVisible();
+        expect(screen.getByText(new RegExp(STORE_CONTACT.address.city))).toBeVisible();
+        expect(screen.getByText(new RegExp(STORE_CONTACT.phoneNumber))).toBeVisible();
 
         expect(
-          screen.queryByRole('button', { name: new RegExp(modifyContactButtonLabel, 'i') })
+          screen.queryByRole('button', { name: new RegExp(enterContactButtonLabel, 'i') })
         ).not.toBeInTheDocument();
       });
     });
@@ -149,7 +151,7 @@ describe('Order component', () => {
         expect(screen.getByText(new RegExp('Veuillez saisir vos coordonnées', 'i'))).toBeVisible();
 
         const element = screen.getByRole('button', {
-          name: new RegExp(modifyContactButtonLabel, 'i'),
+          name: new RegExp(enterContactButtonLabel, 'i'),
         });
         expect(element).toBeVisible();
         expect(element).not.toBeDisabled();
@@ -157,6 +159,15 @@ describe('Order component', () => {
     });
 
     describe('contact handling', () => {
+      ContactModal.mockImplementation(({ isOpen, contact, onChange, onClose }) => {
+        const MockName = 'contact-modal-mock';
+        if (isOpen) {
+          onChange(fakeContact);
+          onClose();
+        }
+        return <MockName {...{ isOpen, contact, onChange, onClose }} />;
+      });
+
       beforeEach(async () => {
         await userEvt.click(
           screen.getByRole('radio', {
@@ -165,12 +176,33 @@ describe('Order component', () => {
         );
         await userEvt.click(
           screen.getByRole('button', {
-            name: new RegExp(modifyContactButtonLabel, 'i'),
+            name: new RegExp(enterContactButtonLabel, 'i'),
           })
         );
       });
 
-      it.skip('todo', () => {});
+      it('todo', () => {
+        let element;
+
+        element = screen.getByRole('button', { name: new RegExp(submitButtonLabel, 'i') });
+        expect(element).toBeVisible();
+        expect(element).not.toBeDisabled();
+
+        expect(
+          screen.getByRole('heading', { name: new RegExp('Vos coordonnées', 'i') })
+        ).toBeVisible();
+        expect(screen.getByText(new RegExp(fakeContact.name))).toBeVisible();
+        expect(screen.getByText(new RegExp(fakeContact.address.line1))).toBeVisible();
+        expect(screen.getByText(new RegExp(fakeContact.address.line2))).toBeVisible();
+        expect(screen.getByText(new RegExp(fakeContact.address.city))).toBeVisible();
+        // expect(screen.getByText(new RegExp(fakeContact.phoneNumber))).toBeVisible();
+
+        element = screen.getByRole('button', {
+          name: new RegExp(modifyContactButtonLabel, 'i'),
+        });
+        expect(element).toBeVisible();
+        expect(element).not.toBeDisabled();
+      });
     });
   });
 });
