@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
-import { regexEscape } from 'shared/utils/test-utils';
 
 import { Order } from './order';
 import { PIZZA_BASES } from 'data/bases';
@@ -15,6 +14,11 @@ jest.mock('features/contact-modal');
 const mockContactModal = ContactModal as jest.MockedFunction<typeof ContactModal>;
 
 jest.setTimeout(10000);
+
+function regexEscape(str: string, ignoreCase = false) {
+  const escapedStr = str.replace(/[()+]/g, '\\$&');
+  return new RegExp(escapedStr, ignoreCase ? 'i' : undefined);
+}
 
 describe('Order component', () => {
   const testBase = PIZZA_BASES.filter((item, idx) => idx !== 0)[0];
@@ -81,7 +85,7 @@ describe('Order component', () => {
     await userEvt.click(getMockContactModalBtnElt());
   }
 
-  beforeEach(async () => {
+  beforeEach(() => {
     userEvt = userEvent.setup();
     render(<Order />);
   });
