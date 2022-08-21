@@ -1,4 +1,4 @@
 export function regexEscape(str: string, ignoreCase = false) {
-  //TODO: handle escape of '(', ')', etc
-  return new RegExp(str, ignoreCase ? 'i' : undefined);
+  const escapedStr = str.replace(/[()+]/g, '\\$&');
+  return new RegExp(escapedStr, ignoreCase ? 'i' : undefined);
 }

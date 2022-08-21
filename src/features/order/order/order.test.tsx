@@ -6,15 +6,21 @@ import { regexEscape } from 'shared/utils/test-utils';
 import { Order } from './order';
 import { PIZZA_BASES } from 'data/bases';
 import { PIZZA_INGREDIENTS } from 'data/ingredients';
+import { formatPrice } from 'shared/utils/helpers';
 import { STORE_CONTACT } from 'data/store-info';
 import { ContactModal } from 'features/contact-modal';
+import { DELIVERY_EXTRA_CHARGE } from 'data/order';
 
 jest.mock('features/contact-modal');
 const mockContactModal = ContactModal as jest.MockedFunction<typeof ContactModal>;
 
+jest.setTimeout(10000);
+
 describe('Order component', () => {
   const testBase = PIZZA_BASES.filter((item, idx) => idx !== 0)[0];
   const testIngredients = [...PIZZA_INGREDIENTS];
+  const testPizzaPrice =
+    testBase.price + testIngredients.reduce((prev, item) => prev + item.price, 0);
   const testContact = {
     name: 'Jane Summers',
     address: { line1: 'somewhere', line2: 'and then', city: 'London' },
@@ -62,23 +68,17 @@ describe('Order component', () => {
 
   let userEvt = userEvent.setup();
 
-  async function step1toStep2(withSelection = false) {
-    if (withSelection) {
-      await userEvt.click(getPizzaBaseElt(testBase.title));
-      testIngredients.forEach(async (item) => {
-        await userEvt.click(getPizzaIngredientElt(item.title));
-      });
+  async function setTestPizza() {
+    await userEvt.click(getPizzaBaseElt(testBase.title));
+    for (let i = 0; i < testIngredients.length; i++) {
+      await userEvt.click(getPizzaIngredientElt(testIngredients[i].title));
     }
-    await userEvt.click(getContinueBtnElt());
   }
 
-  async function step2toStep3(withDelivery = false) {
-    if (withDelivery) {
-      await userEvt.click(getDeliveryElt());
-      await userEvt.click(getEnterContactBtnElt());
-      await userEvt.click(getMockContactModalBtnElt());
-    }
-    await userEvt.click(getSubmitBtnElt());
+  async function setTestDelivery() {
+    await userEvt.click(getDeliveryElt());
+    await userEvt.click(getEnterContactBtnElt());
+    await userEvt.click(getMockContactModalBtnElt());
   }
 
   beforeEach(async () => {
@@ -112,38 +112,51 @@ describe('Order component', () => {
       expect(getContinueBtnElt()).not.toBeDisabled();
     });
 
-    it.skip('should have price updated when selection changes', () => {
-      //TODO
+    it('should have pizza price updated when selection changes', async () => {
+      const initialPrice = PIZZA_BASES[0].price;
+      expect(initialPrice).not.toEqual(testPizzaPrice);
+      expect(
+        screen.getByText(regexEscape(`Prix: ${formatPrice(initialPrice)}`, true))
+      ).toBeVisible();
+
+      await setTestPizza();
+
+      expect(
+        screen.getByText(regexEscape(`Prix: ${formatPrice(testPizzaPrice)}`, true))
+      ).toBeVisible();
     });
   });
 
   describe('at step 2', () => {
-    it('should have both delivery modes visible and not disabled, with pick-up initially selected', async () => {
-      await step1toStep2();
+    describe('initial state', () => {
+      beforeEach(async () => {
+        await userEvt.click(getContinueBtnElt());
+      });
 
-      expect(getPickUpElt()).toBeVisible();
-      expect(getPickUpElt()).not.toBeDisabled();
+      it('should have both delivery modes visible and not disabled, with pick-up initially selected', () => {
+        expect(getPickUpElt()).toBeVisible();
+        expect(getPickUpElt()).not.toBeDisabled();
 
-      expect(getDeliveryElt()).toBeVisible();
-      expect(getDeliveryElt()).not.toBeDisabled();
+        expect(getDeliveryElt()).toBeVisible();
+        expect(getDeliveryElt()).not.toBeDisabled();
 
-      expect(getPickUpElt()).toBeChecked();
-    });
+        expect(getPickUpElt()).toBeChecked();
+      });
 
-    it('should have cancel and back buttons visible and not disabled, and submit button visible', async () => {
-      await step1toStep2();
+      it('should have cancel and back buttons visible and not disabled, and submit button visible', () => {
+        expect(getCancelBtnElt()).toBeVisible();
+        expect(getCancelBtnElt()).not.toBeDisabled();
 
-      expect(getCancelBtnElt()).toBeVisible();
-      expect(getCancelBtnElt()).not.toBeDisabled();
+        expect(getBackBtnElt()).toBeVisible();
+        expect(getBackBtnElt()).not.toBeDisabled();
 
-      expect(getBackBtnElt()).toBeVisible();
-      expect(getBackBtnElt()).not.toBeDisabled();
-
-      expect(getSubmitBtnElt()).toBeVisible();
+        expect(getSubmitBtnElt()).toBeVisible();
+      });
     });
 
     it('should display base and ingredients previously selected', async () => {
-      await step1toStep2(true);
+      await setTestPizza();
+      await userEvt.click(getContinueBtnElt());
 
       expect(screen.getByText(regexEscape(testBase.title))).toBeVisible();
       testIngredients.forEach((item) => {
@@ -153,7 +166,7 @@ describe('Order component', () => {
 
     describe('with pick-up selected', () => {
       beforeEach(async () => {
-        await step1toStep2();
+        await userEvt.click(getContinueBtnElt());
         await userEvt.click(getPickUpElt());
       });
 
@@ -171,16 +184,12 @@ describe('Order component', () => {
 
     describe('with delivery selected and contact missing', () => {
       beforeEach(async () => {
-        await step1toStep2();
+        await userEvt.click(getContinueBtnElt());
         await userEvt.click(getDeliveryElt());
       });
 
       it('should have submit button disabled', () => {
         expect(getSubmitBtnElt()).toBeDisabled();
-      });
-
-      it.skip('should have price updated', () => {
-        // TODO
       });
 
       it('should have message displayed in contact zone', () => {
@@ -198,18 +207,12 @@ describe('Order component', () => {
 
     describe('with delivery selected and contact filled', () => {
       beforeEach(async () => {
-        await step1toStep2();
-        await userEvt.click(getDeliveryElt());
-        await userEvt.click(getEnterContactBtnElt());
-        await userEvt.click(getMockContactModalBtnElt());
+        await userEvt.click(getContinueBtnElt());
+        await setTestDelivery();
       });
 
       it('should have submit button not disabled', () => {
         expect(getSubmitBtnElt()).not.toBeDisabled();
-      });
-
-      it.skip('should have price updated', () => {
-        // TODO
       });
 
       it('should have contact info displayed in contact zone', () => {
@@ -218,8 +221,7 @@ describe('Order component', () => {
         expect(screen.getByText(regexEscape(testContact.address.line1))).toBeVisible();
         expect(screen.getByText(regexEscape(testContact.address.line2))).toBeVisible();
         expect(screen.getByText(regexEscape(testContact.address.city))).toBeVisible();
-        //TODO
-        // expect(screen.getByText(regexEscape(testContact.phoneNumber))).toBeVisible();
+        expect(screen.getByText(regexEscape(testContact.phoneNumber))).toBeVisible();
       });
 
       it('should have modify button visible and not disabled', () => {
@@ -227,13 +229,50 @@ describe('Order component', () => {
         expect(getModifyContactBtnElt()).not.toBeDisabled();
       });
     });
+
+    it('should have pizza price updated when delivery mode changes', async () => {
+      await setTestPizza();
+      await userEvt.click(getContinueBtnElt());
+
+      await userEvt.click(getPickUpElt());
+      expect(screen.getByText(regexEscape(formatPrice(testPizzaPrice)))).toBeVisible();
+
+      await userEvt.click(getDeliveryElt());
+      expect(
+        screen.getByText(regexEscape(formatPrice(testPizzaPrice + DELIVERY_EXTRA_CHARGE)))
+      ).toBeVisible();
+    });
   });
 
   describe('at step 3', () => {
-    it.skip('TODO', async () => {
-      await step1toStep2();
-      await step2toStep3();
-      //TODO
+    it('should display store info and correct price for pick up orders', async () => {
+      await userEvt.click(getContinueBtnElt());
+      await userEvt.click(getSubmitBtnElt());
+
+      expect(screen.getByText(regexEscape('Retrait sur place', true))).toBeVisible();
+      expect(screen.getByText(regexEscape(STORE_CONTACT.address.line1))).toBeVisible();
+      expect(screen.getByText(regexEscape(STORE_CONTACT.address.city))).toBeVisible();
+      expect(screen.getByText(regexEscape(STORE_CONTACT.phoneNumber))).toBeVisible();
+
+      expect(screen.getByText(regexEscape(formatPrice(PIZZA_BASES[0].price)))).toBeVisible();
+    });
+
+    it('should display contact info and correct price for delivery orders', async () => {
+      await setTestPizza();
+      await userEvt.click(getContinueBtnElt());
+      await setTestDelivery();
+      await userEvt.click(getSubmitBtnElt());
+
+      expect(screen.getByText(regexEscape('Livraison', true))).toBeVisible();
+      expect(screen.getByText(regexEscape(testContact.name))).toBeVisible();
+      expect(screen.getByText(regexEscape(testContact.address.line1))).toBeVisible();
+      expect(screen.getByText(regexEscape(testContact.address.line2))).toBeVisible();
+      expect(screen.getByText(regexEscape(testContact.address.city))).toBeVisible();
+      expect(screen.getByText(regexEscape(testContact.phoneNumber))).toBeVisible();
+
+      expect(
+        screen.getByText(regexEscape(formatPrice(testPizzaPrice + DELIVERY_EXTRA_CHARGE)))
+      ).toBeVisible();
     });
   });
 });
