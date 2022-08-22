@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
@@ -46,14 +46,16 @@ describe('ContactModal component', () => {
 
   let userEvt = userEvent.setup();
 
-  it('should initialize inputs with contact props', () => {
+  it('should initialize inputs with contact props', async () => {
     const testProps = {
       isOpen: true,
       contact: cloneContact(testContact1),
       onChange: jest.fn(),
       onClose: jest.fn(),
     };
-    render(<ContactModal {...testProps} />);
+    await act(async () => {
+      render(<ContactModal {...testProps} />);
+    });
 
     expect(getNameElt()).toHaveDisplayValue(testProps.contact.name);
     expect(getAddrLine1Elt()).toHaveDisplayValue(testProps.contact.address.line1);
@@ -62,14 +64,16 @@ describe('ContactModal component', () => {
     expect(getPhoneElt()).toHaveDisplayValue(testProps.contact.phoneNumber);
   });
 
-  it('should initialize inputs with contact props', () => {
+  it('should initialize inputs with contact props', async () => {
     const testProps = {
       isOpen: true,
       contact: undefined,
       onChange: jest.fn(),
       onClose: jest.fn(),
     };
-    render(<ContactModal {...testProps} />);
+    await act(async () => {
+      render(<ContactModal {...testProps} />);
+    });
 
     expect(getNameElt()).toHaveDisplayValue('');
     expect(getAddrLine1Elt()).toHaveDisplayValue('');
@@ -86,7 +90,9 @@ describe('ContactModal component', () => {
       onClose: jest.fn(),
     };
     userEvt = userEvent.setup();
-    render(<ContactModal {...testProps} />);
+    await act(async () => {
+      render(<ContactModal {...testProps} />);
+    });
 
     await userEvt.click(getCancelBtnElt());
 
@@ -102,7 +108,9 @@ describe('ContactModal component', () => {
       onClose: jest.fn(),
     };
     userEvt = userEvent.setup();
-    render(<ContactModal {...testProps} />);
+    await act(async () => {
+      render(<ContactModal {...testProps} />);
+    });
 
     await userEvt.clear(getNameElt());
     await userEvt.clear(getAddrLine1Elt());
@@ -131,7 +139,9 @@ describe('ContactModal component', () => {
       onClose: jest.fn(),
     };
     userEvt = userEvent.setup();
-    render(<ContactModal {...testProps} />);
+    await act(async () => {
+      render(<ContactModal {...testProps} />);
+    });
 
     await userEvt.click(getSubmitBtnElt());
 
