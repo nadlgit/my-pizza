@@ -46,10 +46,14 @@ describe('ContactModal component', () => {
 
   let userEvt = userEvent.setup();
 
-  it('should initialize inputs with contact props', async () => {
+  it.each([
+    ['undefined', undefined],
+    ['contact1', cloneContact(testContact1)],
+    ['contact2', cloneContact(testContact2)],
+  ])('should initialize inputs with contact props: %s', async (testLabel, contact) => {
     const testProps = {
       isOpen: true,
-      contact: cloneContact(testContact1),
+      contact: contact ? cloneContact(contact) : undefined,
       onChange: jest.fn(),
       onClose: jest.fn(),
     };
@@ -57,29 +61,11 @@ describe('ContactModal component', () => {
       render(<ContactModal {...testProps} />);
     });
 
-    expect(getNameElt()).toHaveDisplayValue(testProps.contact.name);
-    expect(getAddrLine1Elt()).toHaveDisplayValue(testProps.contact.address.line1);
-    expect(getAddrLine2Elt()).toHaveDisplayValue(testProps.contact.address?.line2 ?? '');
-    expect(getCityElt()).toHaveDisplayValue(testProps.contact.address.city);
-    expect(getPhoneElt()).toHaveDisplayValue(testProps.contact.phoneNumber);
-  });
-
-  it('should initialize inputs with contact props', async () => {
-    const testProps = {
-      isOpen: true,
-      contact: undefined,
-      onChange: jest.fn(),
-      onClose: jest.fn(),
-    };
-    await act(async () => {
-      render(<ContactModal {...testProps} />);
-    });
-
-    expect(getNameElt()).toHaveDisplayValue('');
-    expect(getAddrLine1Elt()).toHaveDisplayValue('');
-    expect(getAddrLine2Elt()).toHaveDisplayValue('');
-    expect(getCityElt()).toHaveDisplayValue('');
-    expect(getPhoneElt()).toHaveDisplayValue('');
+    expect(getNameElt()).toHaveDisplayValue(testProps.contact?.name ?? '');
+    expect(getAddrLine1Elt()).toHaveDisplayValue(testProps.contact?.address?.line1 ?? '');
+    expect(getAddrLine2Elt()).toHaveDisplayValue(testProps.contact?.address?.line2 ?? '');
+    expect(getCityElt()).toHaveDisplayValue(testProps.contact?.address?.city ?? '');
+    expect(getPhoneElt()).toHaveDisplayValue(testProps.contact?.phoneNumber ?? '');
   });
 
   it('should handle cancellation', async () => {
@@ -100,10 +86,13 @@ describe('ContactModal component', () => {
     expect(testProps.onClose).toHaveBeenCalled();
   });
 
-  it('should handle submission with valid data', async () => {
+  it.each([
+    ['contact1', cloneContact(testContact1)],
+    ['contact2', cloneContact(testContact2)],
+  ])('should handle submission with valid data: %s', async (testLabel, contact) => {
     const testProps = {
       isOpen: true,
-      contact: cloneContact(testContact1),
+      contact: undefined,
       onChange: jest.fn(),
       onClose: jest.fn(),
     };
@@ -112,22 +101,16 @@ describe('ContactModal component', () => {
       render(<ContactModal {...testProps} />);
     });
 
-    await userEvt.clear(getNameElt());
-    await userEvt.clear(getAddrLine1Elt());
-    await userEvt.clear(getAddrLine2Elt());
-    await userEvt.clear(getCityElt());
-    await userEvt.clear(getPhoneElt());
+    await userEvt.type(getNameElt(), contact.name);
+    await userEvt.type(getAddrLine1Elt(), contact.address.line1);
+    contact.address?.line2 && (await userEvt.type(getAddrLine2Elt(), contact.address.line2));
+    await userEvt.type(getCityElt(), contact.address.city);
+    await userEvt.type(getPhoneElt(), contact.phoneNumber);
 
-    const newContact = cloneContact(testContact2);
-    expect(newContact).not.toEqual(testProps.contact);
-    await userEvt.type(getNameElt(), newContact.name);
-    await userEvt.type(getAddrLine1Elt(), newContact.address.line1);
-    newContact.address?.line2 && (await userEvt.type(getAddrLine2Elt(), newContact.address.line2));
-    await userEvt.type(getCityElt(), newContact.address.city);
-    await userEvt.type(getPhoneElt(), newContact.phoneNumber);
+    expect(getSubmitBtnElt()).not.toBeDisabled();
     await userEvt.click(getSubmitBtnElt());
 
-    expect(testProps.onChange).toHaveBeenCalledWith(newContact);
+    expect(testProps.onChange).toHaveBeenCalledWith(contact);
     expect(testProps.onClose).toHaveBeenCalled();
   });
 
@@ -143,6 +126,7 @@ describe('ContactModal component', () => {
       render(<ContactModal {...testProps} />);
     });
 
+    expect(getSubmitBtnElt()).toBeDisabled();
     await userEvt.click(getSubmitBtnElt());
 
     expect(testProps.onChange).not.toHaveBeenCalled();
