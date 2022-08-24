@@ -25,19 +25,22 @@ type FormValues = {
 };
 
 export const ContactModal = ({ isOpen, contact, onChange, onClose }: ContactModalProps) => {
+  const formDefaultValues = {
+    name: contact?.name ?? '',
+    addrLine1: contact?.address?.line1 ?? '',
+    addrLine2: contact?.address?.line2 ?? '',
+    city: contact?.address?.city ?? '',
+    phone: contact?.phoneNumber ?? '',
+  };
+
   const {
     register,
     handleSubmit,
     formState: { isValid, errors },
+    reset,
   } = useForm<FormValues>({
-    mode: 'onChange',
-    defaultValues: {
-      name: contact?.name ?? '',
-      addrLine1: contact?.address?.line1 ?? '',
-      addrLine2: contact?.address?.line2 ?? '',
-      city: contact?.address?.city ?? '',
-      phone: contact?.phoneNumber ?? '',
-    },
+    mode: 'all',
+    defaultValues: formDefaultValues,
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -50,6 +53,11 @@ export const ContactModal = ({ isOpen, contact, onChange, onClose }: ContactModa
       },
       phoneNumber: data.phone,
     });
+    onClose();
+  };
+
+  const onCancel = () => {
+    reset(formDefaultValues);
     onClose();
   };
 
@@ -133,7 +141,7 @@ export const ContactModal = ({ isOpen, contact, onChange, onClose }: ContactModa
         <span>{errors?.phone?.message}</span>
 
         <div className={styles.btns}>
-          <Button color="red" onClick={() => onClose()}>
+          <Button color="red" onClick={onCancel}>
             Annuler
           </Button>
           <Button color="green" type="submit" disabled={!isValid}>

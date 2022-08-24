@@ -80,10 +80,22 @@ describe('ContactModal component', () => {
       render(<ContactModal {...testProps} />);
     });
 
+    await userEvt.type(getNameElt(), '!!!!!!!!');
+    await userEvt.type(getAddrLine1Elt(), '!!!!!!!!');
+    await userEvt.type(getAddrLine2Elt(), '!!!!!!!!');
+    await userEvt.type(getCityElt(), '!!!!!!!!');
+    await userEvt.type(getPhoneElt(), '!!!!!!!!');
+
     await userEvt.click(getCancelBtnElt());
 
     expect(testProps.onChange).not.toHaveBeenCalled();
     expect(testProps.onClose).toHaveBeenCalled();
+
+    expect(getNameElt()).toHaveDisplayValue('');
+    expect(getAddrLine1Elt()).toHaveDisplayValue('');
+    expect(getAddrLine2Elt()).toHaveDisplayValue('');
+    expect(getCityElt()).toHaveDisplayValue('');
+    expect(getPhoneElt()).toHaveDisplayValue('');
   });
 
   it.each([
