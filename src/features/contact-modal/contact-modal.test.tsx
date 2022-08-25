@@ -10,7 +10,7 @@ import type { Order } from 'data/model';
 
 jest.mock('shared/components/modal');
 const mockModal = Modal as jest.MockedFunction<typeof Modal>;
-mockModal.mockImplementation(({ isOpen, close, children }) => {
+mockModal.mockImplementation(({ isOpen, children }) => {
   return (<>{isOpen ? children : null}</>) as ReactPortal;
 });
 

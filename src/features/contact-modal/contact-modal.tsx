@@ -71,7 +71,7 @@ const formFields: TextFieldConfig[] = [
     label: 'Numéro de téléphone',
     required: { errorMsg: 'Vous devez indiquer votre numéro de téléphone' },
     pattern: {
-      value: /^[-+()\.\d\s]+$/,
+      value: /^[-+().\d\s]+$/,
       errorMsg:
         'Votre numéro de téléphone ne doit comporter que des chiffres ou les caractères "+ - ( ) ."',
     },

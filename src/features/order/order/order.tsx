@@ -28,8 +28,6 @@ const nextStep = (step: OrderStep) => {
   }
 };
 
-const tmpOpenCOntactForm = () => {};
-
 export const Order = () => {
   const [step, setStep] = useState<OrderStep>(firstStep);
   const router = useRouter();

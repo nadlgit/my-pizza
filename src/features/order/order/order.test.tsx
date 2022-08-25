@@ -31,7 +31,7 @@ describe('Order component', () => {
     phoneNumber: '(0) 911 7777',
   };
 
-  mockContactModal.mockImplementation(({ isOpen, contact, onChange, onClose }) => {
+  mockContactModal.mockImplementation(({ isOpen, onChange, onClose }) => {
     function handleClick() {
       onChange(testContact);
       onClose();

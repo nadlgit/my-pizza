@@ -14,5 +14,5 @@ export const updateOrderAmount = (order: Order): Order => {
 };
 
 //NB: in real world application order IDs should be provided by a backend
-var _myPizzaOrderId = 1;
+let _myPizzaOrderId = 1;
 export const newOrderId = () => _myPizzaOrderId++;
