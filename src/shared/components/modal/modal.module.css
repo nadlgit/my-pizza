@@ -10,7 +10,7 @@
 }
 
 .content {
-  max-width: max(60vw, 30rem);
+  width: max(60vw, 20rem);
   max-height: 100vh;
   overflow: auto;
 }

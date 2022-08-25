@@ -138,10 +138,24 @@ describe('ContactModal component', () => {
       render(<ContactModal {...testProps} />);
     });
 
+    await userEvt.type(getNameElt(), '!!!!!!!!');
+    await userEvt.type(getAddrLine1Elt(), '!!!!!!!!');
+    await userEvt.type(getAddrLine2Elt(), '!!!!!!!!');
+    await userEvt.type(getCityElt(), '!!!!!!!!');
+    await userEvt.type(getPhoneElt(), '!!!!!!!!');
+
     expect(getSubmitBtnElt()).toBeDisabled();
     await userEvt.click(getSubmitBtnElt());
 
     expect(testProps.onChange).not.toHaveBeenCalled();
     expect(testProps.onClose).not.toHaveBeenCalled();
+
+    const errors = screen.getAllByRole('status');
+    expect(errors).toHaveLength(5);
+    expect(errors[0]).toHaveTextContent(/nom/i);
+    expect(errors[1]).toHaveTextContent(/adresse/i);
+    expect(errors[2]).toBeEmptyDOMElement();
+    expect(errors[3]).toHaveTextContent(/ville/i);
+    expect(errors[4]).toHaveTextContent(/téléphone/i);
   });
 });
