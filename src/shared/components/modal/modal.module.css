@@ -6,7 +6,7 @@
   width: 100%;
   display: grid;
   place-items: center;
-  background-color: var(--color-transparent-dark-gray);
+  background-color: var(--color-transparent-black);
 }
 
 .content {

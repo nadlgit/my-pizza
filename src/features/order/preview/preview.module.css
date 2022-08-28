@@ -18,7 +18,7 @@
   background-color: var(--color-yellow);
   font-weight: var(--font-weight-bold);
   font-size: var(--price-font-size);
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  box-shadow: var(--box-shadow);
 }
 
 @media bp-desktop {
