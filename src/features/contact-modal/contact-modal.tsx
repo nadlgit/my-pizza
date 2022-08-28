@@ -24,9 +24,10 @@ type FormValues = {
   phone: string;
 };
 
-type TextFieldConfig = {
+type FieldConfig = {
   name: keyof FormValues;
   label: string;
+  type?: HTMLInputElement['type'];
   required?: { errorMsg: string };
   pattern?: {
     value: RegExp;
@@ -34,7 +35,7 @@ type TextFieldConfig = {
   };
 };
 
-const formFields: TextFieldConfig[] = [
+const formFields: FieldConfig[] = [
   {
     name: 'name',
     label: 'Nom',
@@ -69,6 +70,7 @@ const formFields: TextFieldConfig[] = [
   {
     name: 'phone',
     label: 'Numéro de téléphone',
+    type: 'tel',
     required: { errorMsg: 'Vous devez indiquer votre numéro de téléphone' },
     pattern: {
       value: /^[-+().\d\s]+$/,
@@ -138,7 +140,7 @@ export const ContactModal = ({ isOpen, contact, onChange, onClose }: ContactModa
               </label>
               <input
                 id={item.name}
-                type="text"
+                type={item?.type ?? 'text'}
                 {...register(item.name, {
                   setValueAs: (txt) => txt.trim(),
                   required: item?.required?.errorMsg ?? undefined,
