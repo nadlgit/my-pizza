@@ -9,10 +9,15 @@
   box-shadow: var(--box-shadow);
   font-weight: var(--font-weight-semibold);
   text-align: center;
+  transition: transform 0.3s;
 }
 
 .button:not(:disabled) {
   cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.1);
 }
 
 .link {
